@@ -32,8 +32,8 @@
                     <td>${insurance.insuranceID}</td>
                     <td>${insurance.name}</td>
                     <td>${insurance.type}</td>
-                    <td><button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Insurance/delete/${insurance.insuranceID}'">删除用户</button></td>
-                    <td><button type="button" class="btn btn-primary" onclick="window.location='#'">权限管理</button></td>
+                    <td><button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Sale/deleteInsurance/${insurance.insuranceID}'">删除</button></td>
+                    <td><button type="button" class="btn btn-primary" onclick="window.location='#'">修改</button></td>
                 </tr>
             </c:forEach>
             </tbody>

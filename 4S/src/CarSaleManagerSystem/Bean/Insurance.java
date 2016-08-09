@@ -10,6 +10,15 @@ public class Insurance {
     private float cost;
     private float default_price;
     private float selling_price;
+    private Order order;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
     public String getInsuranceID() {
         return insuranceID;

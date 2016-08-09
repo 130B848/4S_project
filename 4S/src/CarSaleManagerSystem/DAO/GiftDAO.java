@@ -35,7 +35,6 @@ public class GiftDAO {
         return gifts;
     }
 
-
     public void removeGift(Gift gift){
         Session session = this.sessionFactory.getCurrentSession();
 

@@ -32,8 +32,8 @@
                     <td>${gift.giftID}</td>
                     <td>${gift.name}</td>
                     <td>${gift.type}</td>
-                    <td><button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Gift/delete/${gift.giftID}'">删除用户</button></td>
-                    <td><button type="button" class="btn btn-primary" onclick="window.location='#'">权限管理</button></td>
+                    <td><button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Sale/deleteGift/${gift.giftID}'">删除</button></td>
+                    <td><button type="button" class="btn btn-primary" onclick="window.location='#'">修改</button></td>
                 </tr>
             </c:forEach>
             </tbody>

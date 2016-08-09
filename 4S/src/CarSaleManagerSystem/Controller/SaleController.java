@@ -32,27 +32,21 @@ public class SaleController {
     * */
     @RequestMapping(value = "/createGift", method = RequestMethod.GET)
     public ModelAndView createGiftPage(){
-        ModelAndView modelAndView = new ModelAndView("Sales/giftCreate");
+        ModelAndView modelAndView = new ModelAndView("Sale/giftCreate");
         modelAndView.addObject("gift", new Gift());
         return modelAndView;
     }
 
     @RequestMapping(value = "/createGift", method = RequestMethod.POST)
     public ModelAndView createGift(@ModelAttribute Gift gift){
-        ModelAndView modelAndView = new ModelAndView("redirect:/Sales/giftList");
-        System.out.println(gift.getGiftID() + "name");
-
-        System.out.println(gift.getName() + "name");
-        System.out.println(gift.getType() + "name");
-        System.out.println(gift.getCost() + "name");
-        System.out.println(gift.getDefault_price() + "price");
+        ModelAndView modelAndView = new ModelAndView("redirect:/Sale/listGift");
         giftService.createGift(gift);
         return modelAndView;
     }
 
     @RequestMapping(value = "/listGift", method = RequestMethod.GET)
     public ModelAndView listGift(){
-        ModelAndView modelAndView = new ModelAndView("Sales/giftList");
+        ModelAndView modelAndView = new ModelAndView("Sale/giftList");
         List<?> giftList = giftService.getAllGifts();
         modelAndView.addObject("gifts", giftList);
         return modelAndView;
@@ -74,9 +68,9 @@ public class SaleController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/delete/{giftID}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteGift/{giftID}", method = RequestMethod.GET)
     public ModelAndView removeGift(@PathVariable int giftID){
-        ModelAndView modelAndView = new ModelAndView("redirect: /Sales/giftList");
+        ModelAndView modelAndView = new ModelAndView("redirect: /Sale/giftList");
         Gift gift = giftService.findGiftById(giftID);
         giftService.removeGift(gift);
         return modelAndView;
@@ -90,21 +84,21 @@ public class SaleController {
     */
     @RequestMapping(value = "/createInsurance", method = RequestMethod.GET)
     public ModelAndView createInsurancePage(){
-        ModelAndView modelAndView = new ModelAndView("Sales/insuranceCreate");
+        ModelAndView modelAndView = new ModelAndView("Sale/insuranceCreate");
         modelAndView.addObject("insurance", new Insurance());
         return modelAndView;
     }
 
     @RequestMapping(value = "/createInsurance", method = RequestMethod.POST)
     public ModelAndView createInsurance(@ModelAttribute Insurance insurance){
-        ModelAndView modelAndView = new ModelAndView("redirect:/Sales/insuranceList");
+        ModelAndView modelAndView = new ModelAndView("redirect:/Sale/insuranceList");
         insuranceService.createInsurance(insurance);
         return modelAndView;
     }
 
     @RequestMapping(value = "/listInsurance", method = RequestMethod.GET)
     public ModelAndView listInsurance(){
-        ModelAndView modelAndView = new ModelAndView("Sales/insuranceList");
+        ModelAndView modelAndView = new ModelAndView("Sale/insuranceList");
         List<?> insuranceList = insuranceService.getAllInsurance();
         modelAndView.addObject("insurances", insuranceList);
         return modelAndView;
@@ -126,9 +120,9 @@ public class SaleController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/delete/{insuranceID}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteInsurance/{insuranceID}", method = RequestMethod.GET)
     public ModelAndView removeInsurance(@PathVariable int insuranceID){
-        ModelAndView modelAndView = new ModelAndView("redirect: /Sales/insuranceList");
+        ModelAndView modelAndView = new ModelAndView("redirect: /Sale/insuranceList");
         Insurance insurance = insuranceService.findInsuranceById(insuranceID);
         insuranceService.removeInsurance(insurance);
         return modelAndView;

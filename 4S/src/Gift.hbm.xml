@@ -13,5 +13,11 @@
         <property name="cost" column="cost" type="java.lang.Float" precision="10" scale="2" not-null="true"/>
         <property name="default_price" column="default_price" type="java.lang.Float" precision="10" scale="2" not-null="true"/>
         <property name="selling_price" column="selling_price" type="java.lang.Float" precision="10" scale="2" not-null="false"/>
+        <many-to-one name="order" class="CarSaleManagerSystem.Bean.Order" cascade="none"
+                     outer-join="auto"
+                     update="true"
+                     insert="true"
+                     column="order_id"
+                     not-null="false"/>
     </class>
 </hibernate-mapping>

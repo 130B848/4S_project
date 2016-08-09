@@ -11,6 +11,16 @@ public class Gift {
     private float default_price;
     private float selling_price;
 
+    private Order order;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     public int getGiftID() {
         return giftID;
     }

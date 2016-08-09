@@ -43,10 +43,10 @@
     <div class="navbar-collapse collapse">
       <!-- Main navigation -->
       <ul class="nav navbar-nav">
-        <li class=""><a href="${pageContext.request.contextPath}/Site/home">Home</a></li>
+        <li class=""><a href="#">首页</a></li>
 
-        <li class=""><a href="${pageContext.request.contextPath}/Book/list">BookList</a></li>
-        <li class=""><a href="${pageContext.request.contextPath}/Order/shoppingCart">ShoppingCart</a></li>
+        <li class=""><a href="#">页面1</a></li>
+        <li class=""><a href="#">页面2</a></li>
 
         <%
           if(session.getAttribute("userID") != null){
@@ -54,11 +54,11 @@
 
 
         <%if(session.getAttribute("admin") == null){%>
-        <li><a data-no-turbolink="true" href="${pageContext.request.contextPath}/Order/list">OrderList</a></li>
+        <li><a data-no-turbolink="true" href="#">页面三</a></li>
         <%}else{%>
-        <li><a data-no-turbolink="true" href="${pageContext.request.contextPath}/Order/listAll">OrderList</a></li>
-        <li class=""><a href="${pageContext.request.contextPath}/User/list">CustomerList</a></li>
-        <li><a data-no-turbolink="true" href="${pageContext.request.contextPath}/Statistic/overviews">SalesStatistic</a></li>
+        <li><a data-no-turbolink="true" href="#">页面3</a></li>
+        <li class=""><a href="#">页面4</a></li>
+        <li><a data-no-turbolink="true" href="#">页面5</a></li>
 
         <%
             }

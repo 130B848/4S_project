@@ -11,9 +11,19 @@
     <title></title>
   </head>
   <body>
+  <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+  <html>
+  <head>
+    <title></title>
+  </head>
+  <body>
   <a href="/User/list">用户列表</a>
   <a href="/User/create">创建用户</a>
   <a href="/Car/list">车辆列表</a>
   <a href="/Car/createStock">车辆入库登记</a>
+  <a href="/Sale/createGift">创建精品</a>
+  <a href="/Logon/login">登录</a>
+  </body>
+  </html>
   </body>
 </html>

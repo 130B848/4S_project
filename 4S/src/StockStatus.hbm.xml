@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="CarSaleManagerSystem.Bean.StockStatus" table="stock_status">
+        <id name="state" column="stock_status" type="java.lang.String" length="32">
+        </id>
+        <set name="carSet" table="vehicle_stock_status" inverse="true">
+            <key column="stock_status" not-null="true"/>
+            <one-to-many class="CarSaleManagerSystem.Bean.Car"/>
+        </set>
+    </class>
+</hibernate-mapping>

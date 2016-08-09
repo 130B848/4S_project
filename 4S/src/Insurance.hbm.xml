@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="CarSaleManagerSystem.Bean.Insurance" table="insurance">
+        <id name="insuranceID" column="insurance_id" type="java.lang.Integer">
+            <generator class="increment"/>
+        </id>
+        <property name="name" column="name" type="java.lang.String" length="64" not-null="true"/>
+        <property name="type" column="type" type="java.lang.String" length="64" not-null="true"/>
+        <property name="cost" column="cost" type="java.lang.Float" precision="10" scale="2" not-null="true"/>
+        <property name="default_price" column="default_price" type="java.lang.Float" precision="10" scale="2" not-null="true"/>
+        <property name="selling_price" column="selling_price" type="java.lang.Float" precision="10" scale="2" not-null="false"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="CarSaleManagerSystem.Bean.Car" table="vehicle">
+        <id name="carID" column="vehicle_id" type="java.lang.String" length="128">
+        </id>
+        <!--<property name="brand" column="brand" type="java.lang.String" length="64" update="false" insert="false"/>-->
+        <property name="sfx" column="sfx" type="java.lang.String" length="64"/>
+        <!--<property name="carColor" column="carColor" type="java.lang.String" length="32"/>-->
+        <property name="cost" column="cost" type="java.lang.Float" precision="10" scale="2"/>
+        <property name="purchasedTime" column="purchase_time" type="java.util.Date"/>
+        <property name="price" column="price" type="java.lang.Float" precision="10" scale="2"/>
+        <!--<property name="status" column="status" type="java.lang.String" length="32"/>-->
+        <property name="normal" column="normal" type="java.lang.String" length="1"/>
+        <many-to-one name="garage" class="CarSaleManagerSystem.Bean.Garage" outer-join="auto" column="brand" update="true" insert="true" not-null="true">
+        </many-to-one>
+        <many-to-one name="carColor" class="CarSaleManagerSystem.Bean.CarColor" outer-join="auto" column="color" update="true" insert="true" not-null="true">
+        </many-to-one>
+        <many-to-one name="stockStatus" class="CarSaleManagerSystem.Bean.StockStatus" outer-join="auto" column="status" update="true" insert="true" not-null="true">
+        </many-to-one>
+    </class>
+</hibernate-mapping>

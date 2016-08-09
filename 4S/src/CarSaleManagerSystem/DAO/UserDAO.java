@@ -52,8 +52,17 @@ public class UserDAO {
         return user;
     }
 
-    public int login(User user){
+    public int login(User user) {
         /** to be implemented*/
+
+        Session session = this.sessionFactory.getCurrentSession();
+        String hql = "from User where username = " + user.getUsername() + " and password = " + user.getPassword();
+
+        User usr = null;
+        usr = (User) session.createQuery(hql).list().get(0);
+
+        if (usr != null)
+            return 1;
         return 0;
     }
 

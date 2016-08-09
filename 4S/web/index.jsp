@@ -25,7 +25,7 @@
   <a href="/Sale/listGift">精品列表</a>
   <a href="/Sale/createInsurance">创建保险</a>
   <a href="/Sale/listInsurance">保险列表</a>
-  <a href="/Logon/login">登录</a>
+  <a href="/User/login">登录</a>
   </body>
   </html>
   </body>

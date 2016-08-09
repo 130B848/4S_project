@@ -85,4 +85,31 @@ public class UserController {
         userService.removeUser(user);
         return modelAndView;
     }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public ModelAndView loginPage(){
+        ModelAndView modelAndView = new ModelAndView("/Logon/login");
+        modelAndView.addObject("user",new User());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ModelAndView login(@ModelAttribute User user, HttpSession session){
+        ModelAndView modelAndView = null;
+        System.out.print(user.getUsername());
+        try {
+            if(userService.login(user) != 1) {
+                modelAndView = new ModelAndView("redirect:/User/login");
+                session.setAttribute("username", user.getUsername());
+                return modelAndView;
+            }else{
+                modelAndView = new ModelAndView("redirect:/User/login");
+                modelAndView.addObject("message","用户名或密码错误");
+                return modelAndView;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return modelAndView;
+        }
+    }
 }

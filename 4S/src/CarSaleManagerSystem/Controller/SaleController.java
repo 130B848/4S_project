@@ -91,7 +91,7 @@ public class SaleController {
 
     @RequestMapping(value = "/createInsurance", method = RequestMethod.POST)
     public ModelAndView createInsurance(@ModelAttribute Insurance insurance){
-        ModelAndView modelAndView = new ModelAndView("redirect:/Sale/insuranceList");
+        ModelAndView modelAndView = new ModelAndView("redirect:/Sale/listInsurance");
         insuranceService.createInsurance(insurance);
         return modelAndView;
     }

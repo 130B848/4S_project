@@ -28,7 +28,7 @@ public class InsuranceDAO {
 
     public List<Insurance> getAllInsurances(){
         Session session = this.sessionFactory.getCurrentSession();
-        String hql = "from Gift";
+        String hql = "from Insurance";
         List<Insurance> insurances = session.createQuery(hql).list();
         return insurances;
     }

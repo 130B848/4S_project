@@ -4,7 +4,7 @@ package CarSaleManagerSystem.Bean;
  * Created by HFQ on 2016/8/5.
  */
 public class Insurance {
-    private String insuranceID;
+    private int insuranceID;
     private String name;
     private String type;
     private float cost;
@@ -20,11 +20,11 @@ public class Insurance {
         this.order = order;
     }
 
-    public String getInsuranceID() {
+    public int getInsuranceID() {
         return insuranceID;
     }
 
-    public void setInsuranceID(String insuranceID) {
+    public void setInsuranceID(int insuranceID) {
         this.insuranceID = insuranceID;
     }
 

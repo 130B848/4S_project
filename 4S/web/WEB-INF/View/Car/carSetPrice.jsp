@@ -59,6 +59,13 @@
   </div>
 
   <div class="form-group">
+    <label class="col-sm-2 control-label">折扣 :</label>
+    <div class="col-sm-7">
+      <form:input cssClass="form-control" ID="Discount" path="Discount"/>
+    </div>
+  </div>
+
+  <div class="form-group">
     <div class="col-sm-2"></div>
     <div class="col-sm-7">
       <button type="submit" class="btn btn-primary">登记</button>

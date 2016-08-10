@@ -74,6 +74,7 @@ public class CarController {
         if(stockCar != null){
             stockCar.setCost(car.getCost());
             stockCar.setPrice(car.getPrice());
+            stockCar.setDiscount(car.getDiscount());
             carService.updateCar(stockCar);
         }
         return modelAndView;

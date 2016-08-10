@@ -19,6 +19,7 @@
                      outer-join="auto"
                      update="true"
                      insert="true"
+                     lazy="false"
                      column="order_id"
                      not-null="false"/>
         <many-to-one name="carBrand" class="CarSaleManagerSystem.Bean.CarBrand" outer-join="auto" column="brand" update="true" insert="true" not-null="true">

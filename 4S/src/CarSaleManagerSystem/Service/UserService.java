@@ -38,7 +38,12 @@ public class UserService {
     }
 
     public int login(User user){
-        return userDAO.login(user);
+        User usr = userDAO.findUserByUsername(user.getUsername());
+        if(user.getUsername().equals(usr.getUsername()) && user.getPassword().equals(usr.getPassword()))
+        {
+            return usr.getUserID();
+        }
+        return -1;
     }
 
     public void logout(){

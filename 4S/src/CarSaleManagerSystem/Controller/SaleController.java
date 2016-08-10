@@ -1,7 +1,9 @@
 package CarSaleManagerSystem.Controller;
 
+import CarSaleManagerSystem.Bean.CarBrand;
 import CarSaleManagerSystem.Bean.Gift;
 import CarSaleManagerSystem.Bean.Insurance;
+import CarSaleManagerSystem.Service.CarService;
 import CarSaleManagerSystem.Service.GiftService;
 import CarSaleManagerSystem.Service.InsuranceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ public class SaleController {
     @Autowired
     private InsuranceService insuranceService;
 
+    @Autowired
+    private CarService carService;
 
     /*
     * Gift controller
@@ -33,7 +37,9 @@ public class SaleController {
     @RequestMapping(value = "/createGift", method = RequestMethod.GET)
     public ModelAndView createGiftPage(){
         ModelAndView modelAndView = new ModelAndView("Sale/giftCreate");
+        List<CarBrand> carBrandList = carService.getAllCarBrands();
         modelAndView.addObject("gift", new Gift());
+        modelAndView.addObject("carBrands",carBrandList);
         return modelAndView;
     }
 
@@ -70,7 +76,7 @@ public class SaleController {
 
     @RequestMapping(value = "/deleteGift/{giftID}", method = RequestMethod.GET)
     public ModelAndView removeGift(@PathVariable int giftID){
-        ModelAndView modelAndView = new ModelAndView("redirect: /Sale/giftList");
+        ModelAndView modelAndView = new ModelAndView("redirect:/Sale/listGift");
         Gift gift = giftService.findGiftById(giftID);
         giftService.removeGift(gift);
         return modelAndView;

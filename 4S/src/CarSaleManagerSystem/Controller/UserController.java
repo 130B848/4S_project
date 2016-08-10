@@ -95,22 +95,46 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(@ModelAttribute User user, HttpSession session){
-        ModelAndView modelAndView = null;
-        System.out.print(user.getUsername());
-        try {
-            if(userService.login(user) != 1) {
-                modelAndView = new ModelAndView("redirect:/User/login");
-                session.setAttribute("userID",user.getUserID());
-                session.setAttribute("username", user.getUsername());
-                return modelAndView;
-            }else{
-                modelAndView = new ModelAndView("redirect:/User/login");
-                modelAndView.addObject("message","用户名或密码错误");
-                return modelAndView;
-            }
-        }catch (Exception e){
-            e.printStackTrace();
+        ModelAndView modelAndView;
+        int userID = userService.login(user);
+        if(userID < 0) {
+            modelAndView = new ModelAndView("redirect:/User/login");
+            modelAndView.addObject("message","用户名或密码错误");
+            return modelAndView;
+        }else{
+            modelAndView = new ModelAndView("redirect:/User/profile");
+            session.setAttribute("userID",userID);
+            session.setAttribute("username", user.getUsername());
             return modelAndView;
         }
+    }
+
+    @RequestMapping(value = "/profile",method = RequestMethod.GET)
+    public ModelAndView getProfile(HttpSession session){
+        ModelAndView modelAndView = loginFilter.userLogin(session);
+        if (modelAndView != null)
+            return modelAndView;
+        int userID = (int)session.getAttribute("userID");
+        modelAndView = new ModelAndView("User/userCenter");
+        User user = userService.findUserById(userID);
+        modelAndView.addObject("user",user);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
+    public ModelAndView logout(HttpSession session){
+        ModelAndView modelAndView = new ModelAndView("redirect:/Site/home");
+        if(session.getAttribute("userID") != null){
+            session.removeAttribute("userID");
+        }
+        if(session.getAttribute("username") != null)
+        {
+            session.removeAttribute("username");
+        }
+        if(session.getAttribute("admin") != null)
+        {
+            session.removeAttribute("admin");
+        }
+        return modelAndView;
     }
 }

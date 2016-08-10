@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -66,6 +67,18 @@
     </div>
 
     <div class="form-group">
+        <label class="col-sm-2 control-label">车型品牌:</label>
+        <div class="col-sm-7">
+            <select class="form-control" name="Brand" id="Brand">
+                <c:forEach items="${carBrands}" var="carBrand">
+                    <option value="${carBrand.brand}">${carBrand.brand}</option>
+                </c:forEach>
+            </select>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Car/createCarBrand'">没有这个车型，添加一个</button>
+    </div>
+
+    <div class="form-group">
         <label class="col-sm-2 control-label">精品成本 :</label>
         <div class="col-sm-7">
             <form:input cssClass="form-control" ID="Cost" path="Cost"/>
@@ -78,6 +91,8 @@
             <form:input cssClass="form-control" ID="default_price" path="default_price"/>
         </div>
     </div>
+
+
 
     <div class="form-group">
         <div class="col-sm-2"></div>

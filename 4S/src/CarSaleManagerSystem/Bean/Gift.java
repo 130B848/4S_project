@@ -14,7 +14,7 @@ public class Gift {
     private float actualGetMoney;
     private Order order;
 
-    private CarBrand carBrand;
+    private CarBrand carBrand = new CarBrand();
 
     public float getActualGetMoney() {
         return actualGetMoney;

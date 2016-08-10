@@ -1,6 +1,7 @@
 package CarSaleManagerSystem.DAO;
 
 import CarSaleManagerSystem.Bean.User;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,20 +53,17 @@ public class UserDAO {
         return user;
     }
 
-    public int login(User user) {
-        /** to be implemented*/
-
+    public User findUserByUsername(String username){
         Session session = this.sessionFactory.getCurrentSession();
-        String hql = "from User where username = " + user.getUsername() + " and password = " + user.getPassword();
-
-        User usr = null;
-        usr = (User) session.createQuery(hql).list().get(0);
-
-        if (usr != null)
-            return 1;
-        return 0;
+        String hql = "from User where username = ?";
+        Query query = session.createQuery(hql);
+        query.setString(0,username);
+        User user = null;
+        List<User> result = query.list();
+        if(result.size() == 0){
+            return null;
+        }
+        user = result.get(0);
+        return user;
     }
-
-
-
 }

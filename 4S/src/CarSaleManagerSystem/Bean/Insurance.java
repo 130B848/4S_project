@@ -12,7 +12,7 @@ public class Insurance {
     private float selling_price;
     private float discount;
     private float actualGetMoney;
-    private Order order;
+    private Order order ;
 
     public float getActualGetMoney() {
         return actualGetMoney;

@@ -64,15 +64,27 @@
   </div>
 
   <div class="form-group">
-    <label class="col-sm-2 control-label">品牌:</label>
+    <label class="col-sm-2 control-label">厂家:</label>
     <div class="col-sm-7">
-      <select class="form-control" name="brand" id="Brand">
+      <select class="form-control" name="garageBrand" id="GarageBrand">
         <c:forEach items="${garages}" var="garage">
           <option value="${garage.brand}">${garage.brand}</option>
         </c:forEach>
       </select>
     </div>
-    <button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Car/createGarage'">没有这个品牌，添加一个</button>
+    <button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Car/createGarage'">没有这个厂家，添加一个</button>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">车型品牌:</label>
+    <div class="col-sm-7">
+      <select class="form-control" name="Brand" id="Brand">
+        <c:forEach items="${carBrands}" var="carBrand">
+          <option value="${carBrand.brand}">${carBrand.brand}</option>
+        </c:forEach>
+      </select>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Car/createCarBrand'">没有这个车型，添加一个</button>
   </div>
 
   <div class="form-group">

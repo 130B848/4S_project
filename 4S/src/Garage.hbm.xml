@@ -5,11 +5,15 @@
 
 <hibernate-mapping>
     <class name="CarSaleManagerSystem.Bean.Garage" table="garage">
-        <id name="brand" type="java.lang.String" length="64" column="brand">
+        <id name="brand" type="java.lang.String" length="64" column="garage_brand">
         </id>
-        <set name="carSet" table="vehicle_garage" inverse="true">
-            <key column="brand" not-null="true"/>
+        <set name="carSet" table="vehicle" inverse="true">
+            <key column="garage_brand" not-null="true"/>
             <one-to-many class="CarSaleManagerSystem.Bean.Car"/>
+        </set>
+        <set name="carBrandSet" table="brand" inverse="true">
+            <key column="garage_brand" not-null="true"/>
+            <one-to-many class="CarSaleManagerSystem.Bean.CarBrand"/>
         </set>
     </class>
 </hibernate-mapping>

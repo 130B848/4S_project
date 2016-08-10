@@ -1,9 +1,6 @@
 package CarSaleManagerSystem.Controller;
 
-import CarSaleManagerSystem.Bean.Car;
-import CarSaleManagerSystem.Bean.CarColor;
-import CarSaleManagerSystem.Bean.Garage;
-import CarSaleManagerSystem.Bean.StockStatus;
+import CarSaleManagerSystem.Bean.*;
 import CarSaleManagerSystem.Service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,9 +28,11 @@ public class CarController {
     public ModelAndView createStockPage(){
         ModelAndView modelAndView = new ModelAndView("Car/carStockRegister");
         List<?> garageList = carService.getAllGarages();
+        List<?> carBrandList = carService.getAllCarBrands();
         List<?> colorList = carService.getAllColors();
         List<?> statusList = carService.getAllStockStatus();
         modelAndView.addObject("garages",garageList);
+        modelAndView.addObject("carBrands",carBrandList);
         modelAndView.addObject("colors",colorList);
         modelAndView.addObject("statusList",statusList);
         modelAndView.addObject("car",new Car());
@@ -91,6 +90,22 @@ public class CarController {
     public ModelAndView createGarage(@ModelAttribute Garage garage){
         ModelAndView modelAndView = new ModelAndView("redirect:/Car/createStock");
         carService.createGarage(garage);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/createCarBrand",method = RequestMethod.GET)
+    public ModelAndView createCarBrandPage(){
+        ModelAndView modelAndView = new ModelAndView("Car/createCarBrand");
+        List<Garage> garageList = carService.getAllGarages();
+        modelAndView.addObject("carBrand",new CarBrand());
+        modelAndView.addObject("garages",garageList);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/createCarBrand",method = RequestMethod.POST)
+    public ModelAndView createCarBrand(@ModelAttribute CarBrand carBrand){
+        ModelAndView modelAndView = new ModelAndView("redirect:/Car/createStock");
+        carService.createCarBrand(carBrand);
         return modelAndView;
     }
 

@@ -1,13 +1,7 @@
 package CarSaleManagerSystem.Service;
 
-import CarSaleManagerSystem.Bean.Car;
-import CarSaleManagerSystem.Bean.CarColor;
-import CarSaleManagerSystem.Bean.Garage;
-import CarSaleManagerSystem.Bean.StockStatus;
-import CarSaleManagerSystem.DAO.CarDAO;
-import CarSaleManagerSystem.DAO.ColorDAO;
-import CarSaleManagerSystem.DAO.GarageDAO;
-import CarSaleManagerSystem.DAO.StockStatusDAO;
+import CarSaleManagerSystem.Bean.*;
+import CarSaleManagerSystem.DAO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +19,9 @@ public class CarService {
 
     @Autowired
     private GarageDAO garageDAO;
+
+    @Autowired
+    private CarBrandDAO carBrandDAO;
 
     @Autowired
     private ColorDAO colorDAO;
@@ -58,6 +55,14 @@ public class CarService {
 
     public List<Garage> getAllGarages(){
         return garageDAO.getAllGarages();
+    }
+
+    public void createCarBrand(CarBrand carBrand){
+        carBrandDAO.createCarBrand(carBrand);
+    }
+
+    public List<CarBrand> getAllCarBrands(){
+        return carBrandDAO.getAllCarBrands();
     }
 
     public void createColor(CarColor carColor){

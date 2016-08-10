@@ -12,11 +12,30 @@ public class Car {
     private CarColor carColor = new CarColor();
     private float cost;
 //    private String status; // on the way
+    private Date predictedTime;
     private Date purchasedTime;
     private float price;
+    private float discount;
     private String normal;
+    private CarBrand carBrand = new CarBrand();
     private Garage garage = new Garage();
     private StockStatus stockStatus = new StockStatus();
+
+    public Date getPredictedTime() {
+        return predictedTime;
+    }
+
+    public void setPredictedTime(Date predictedTime) {
+        this.predictedTime = predictedTime;
+    }
+
+    public CarBrand getCarBrand() {
+        return carBrand;
+    }
+
+    public void setCarBrand(CarBrand carBrand) {
+        this.carBrand = carBrand;
+    }
 
     public StockStatus getStockStatus() {
         return stockStatus;
@@ -42,6 +61,14 @@ public class Car {
         this.price = price;
     }
 
+    public float getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(float discount) {
+        this.discount = discount;
+    }
+
     public String getCarID() {
         return carID;
     }
@@ -51,11 +78,19 @@ public class Car {
     }
 
     public String getBrand() {
-        return garage.getBrand();
+        return carBrand.getBrand();
     }
 
     public void setBrand(String brand) {
-        this.garage.setBrand(brand);// = brand;
+        this.carBrand.setBrand(brand);// = brand;
+    }
+
+    public String getGarageBrand(){
+        return garage.getBrand();
+    }
+
+    public void setGarageBrand(String brand){
+        this.garage.setBrand(brand);
     }
 
     public String getSfx() {

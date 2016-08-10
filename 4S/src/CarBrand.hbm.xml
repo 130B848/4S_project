@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="CarSaleManagerSystem.Bean.CarBrand" table="brand">
+        <id name="brand" type="java.lang.String" length="64" column="brand">
+        </id>
+        <!--<composite-id>-->
+            <!--<key-property name="brand" type="java.lang.String" length="64" column="brand"/>-->
+            <!--<key-many-to-one name="garage" class="CarSaleManagerSystem.Bean.Garage" column="garage_brand"/>-->
+        <!--</composite-id>-->
+        <set name="carSet" table="vehicle" inverse="true">
+            <key column="brand" not-null="true"/>
+            <one-to-many class="CarSaleManagerSystem.Bean.Car"/>
+        </set>
+        <set name="giftSet" table="gift" inverse="true">
+            <key column="brand" not-null="true"/>
+            <one-to-many class="CarSaleManagerSystem.Bean.Gift"/>
+        </set>
+        <many-to-one name="garage" class="CarSaleManagerSystem.Bean.Garage" outer-join="auto" column="garage_brand" update="true" insert="true" not-null="true">
+        </many-to-one>
+    </class>
+</hibernate-mapping>

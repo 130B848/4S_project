@@ -10,7 +10,25 @@ public class Insurance {
     private float cost;
     private float default_price;
     private float selling_price;
+    private float discount;
+    private float actualGetMoney;
     private Order order;
+
+    public float getActualGetMoney() {
+        return actualGetMoney;
+    }
+
+    public void setActualGetMoney(float actualGetMoney) {
+        this.actualGetMoney = actualGetMoney;
+    }
+
+    public float getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(float discount) {
+        this.discount = discount;
+    }
 
     public Order getOrder() {
         return order;

@@ -26,5 +26,6 @@
                 <mapping resource="Role.hbm.xml"/>
                 <mapping resource="Color.hbm.xml"/>
                 <mapping resource="StockStatus.hbm.xml"/>
+                <mapping resource="CarBrand.hbm.xml"/>
         </session-factory>
 </hibernate-configuration>

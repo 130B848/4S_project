@@ -16,6 +16,7 @@ public class Order {
     private Set<Gift> giftSet = new HashSet<>();
     private Set<Insurance> insuranceSet = new HashSet<>();
     private float salePrice;
+    private float actualGetMoney;
     private Date date;
     private String finish_status; // is finished?
     private String remark;
@@ -98,5 +99,13 @@ public class Order {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public float getActualGetMoney() {
+        return actualGetMoney;
+    }
+
+    public void setActualGetMoney(float actualGetMoney) {
+        this.actualGetMoney = actualGetMoney;
     }
 }

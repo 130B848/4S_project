@@ -36,6 +36,7 @@
                             <value>Insurance.hbm.xml</value>
                             <value>Color.hbm.xml</value>
                             <value>StockStatus.hbm.xml</value>
+                            <value>CarBrand.hbm.xml</value>
                      </list>
               </property>
               <property name="hibernateProperties">

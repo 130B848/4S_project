@@ -9,6 +9,7 @@
         </id>
         <property name="finish_status" column="finish_state" type="java.lang.String" length="1" not-null="true"/>
         <property name="salePrice" column="sale_price" type="java.lang.Float" precision="10" scale="2" not-null="true"/>
+        <property name="actualGetMoney" column="actual_get_money" type="java.lang.Float" precision="10" scale="2" not-null="false"/>
         <property name="date" column="create_time" type="java.util.Date" not-null="true"/>
         <property name="remark" column="remark" type="java.lang.String" length="255" not-null="false"/>
         <one-to-one name="car" constrained="true"/>

@@ -10,7 +10,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-  <title>CreateBook</title>
+  <title>车辆入库登记</title>
 </head>
 
 <body>

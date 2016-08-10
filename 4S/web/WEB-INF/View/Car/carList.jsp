@@ -26,6 +26,8 @@
         <th>颜色</th>
         <th>入库时间</th>
         <th>库存状态</th>
+        <th>成本</th>
+        <th>指导价</th>
         <th colspan=3>操作</th>
       </tr>
       </thead>
@@ -38,8 +40,10 @@
           <td>${car.color}</td>
           <td>${car.purchasedTime}</td>
           <td>${car.status}</td>
+          <td>${car.cost}</td>
+          <td>${car.price}</td>
           <td><button type="button" class="btn btn-primary" onclick="window.location='#'">购买</button></td>
-          <td><button type="button" class="btn btn-primary" onclick="window.location='#'">设置成本</button></td>
+          <td><button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Car/setCost/${car.carID}'">设置成本</button></td>
           <td><button type="button" class="btn btn-primary" onclick="window.location='#'">更改库存状态</button></td>
         </tr>
       </c:forEach>

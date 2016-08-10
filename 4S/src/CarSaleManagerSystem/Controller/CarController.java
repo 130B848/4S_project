@@ -8,6 +8,7 @@ import CarSaleManagerSystem.Service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -54,6 +55,28 @@ public class CarController {
         ModelAndView modelAndView = new ModelAndView("Car/carList");
         List<?> carList = carService.getAllCars();
         modelAndView.addObject("cars",carList);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/setCost/{carID}",method = RequestMethod.GET)
+    public ModelAndView setCarCostPage(@PathVariable String carID){
+        ModelAndView modelAndView = new ModelAndView("Car/carSetPrice");
+        Car car = carService.findCarById(carID);
+        if(car != null){
+            modelAndView.addObject("car",car);
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/setCost/{carID}",method = RequestMethod.POST)
+    public ModelAndView setCarCostPage(@PathVariable String carID,@ModelAttribute Car car){
+        ModelAndView modelAndView = new ModelAndView("redirect:/Car/list");
+        Car stockCar = carService.findCarById(carID);
+        if(stockCar != null){
+            stockCar.setCost(car.getCost());
+            stockCar.setPrice(car.getPrice());
+            carService.updateCar(stockCar);
+        }
         return modelAndView;
     }
 

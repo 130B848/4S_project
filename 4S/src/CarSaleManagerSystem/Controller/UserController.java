@@ -100,6 +100,7 @@ public class UserController {
         try {
             if(userService.login(user) != 1) {
                 modelAndView = new ModelAndView("redirect:/User/login");
+                session.setAttribute("userID",user.getUserID());
                 session.setAttribute("username", user.getUsername());
                 return modelAndView;
             }else{

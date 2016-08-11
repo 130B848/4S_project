@@ -1,8 +1,6 @@
 package CarSaleManagerSystem.Controller;
 
-import CarSaleManagerSystem.Bean.CarBrand;
-import CarSaleManagerSystem.Bean.Gift;
-import CarSaleManagerSystem.Bean.Insurance;
+import CarSaleManagerSystem.Bean.*;
 import CarSaleManagerSystem.Service.CarService;
 import CarSaleManagerSystem.Service.GiftService;
 import CarSaleManagerSystem.Service.InsuranceService;
@@ -38,8 +36,10 @@ public class SaleController {
     public ModelAndView createGiftPage(){
         ModelAndView modelAndView = new ModelAndView("Sale/giftCreate");
         List<CarBrand> carBrandList = carService.getAllCarBrands();
+        List<GiftType> giftTypeList = giftService.getAllGiftTypes();
         modelAndView.addObject("gift", new Gift());
         modelAndView.addObject("carBrands",carBrandList);
+        modelAndView.addObject("types",giftTypeList);
         return modelAndView;
     }
 
@@ -82,8 +82,6 @@ public class SaleController {
         return modelAndView;
     }
 
-
-
     /*
     * insurance controller
     *
@@ -91,7 +89,9 @@ public class SaleController {
     @RequestMapping(value = "/createInsurance", method = RequestMethod.GET)
     public ModelAndView createInsurancePage(){
         ModelAndView modelAndView = new ModelAndView("Sale/insuranceCreate");
+        List<InsuranceType> insuranceTypeList = insuranceService.getAllInsuranceType();
         modelAndView.addObject("insurance", new Insurance());
+        modelAndView.addObject("types",insuranceTypeList);
         return modelAndView;
     }
 
@@ -133,5 +133,34 @@ public class SaleController {
         insuranceService.removeInsurance(insurance);
         return modelAndView;
     }
+
+    @RequestMapping(value = "/createGiftType",method = RequestMethod.GET)
+    public ModelAndView createGiftTypePage(){
+        ModelAndView modelAndView = new ModelAndView("Sale/createGiftType");
+        modelAndView.addObject("giftType",new GiftType());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/createGiftType",method = RequestMethod.POST)
+    public ModelAndView createSFX(@ModelAttribute GiftType giftType){
+        ModelAndView modelAndView = new ModelAndView("redirect:/Sale/createGift");
+        giftService.createGiftType(giftType);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/createInsuranceType",method = RequestMethod.GET)
+    public ModelAndView createInsuranceTypePage(){
+        ModelAndView modelAndView = new ModelAndView("Sale/createInsuranceType");
+        modelAndView.addObject("insuranceType",new InsuranceType());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/createInsuranceType",method = RequestMethod.POST)
+    public ModelAndView createInsuranceType(@ModelAttribute InsuranceType insuranceType){
+        ModelAndView modelAndView = new ModelAndView("redirect:/Sale/createInsurance");
+        insuranceService.createInsuranceType(insuranceType);
+        return modelAndView;
+    }
+
 
 }

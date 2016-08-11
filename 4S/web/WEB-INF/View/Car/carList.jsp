@@ -37,9 +37,9 @@
       <c:forEach items="${cars}" var="car">
         <tr>
           <td>${car.carID}</td>
-          <td>${car.garage.brand}</td>
-          <td>${car.carBrand.brand}</td>
-          <td>${car.carSfx}</td>
+          <td>${car.brand}</td>
+          <td>${car.brand}</td>
+          <td>${car.sfx}</td>
           <td>${car.color}</td>
           <td>${car.purchasedTime}</td>
           <td>${car.status}</td>

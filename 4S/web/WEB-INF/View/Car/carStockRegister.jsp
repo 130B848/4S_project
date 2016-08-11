@@ -1,4 +1,4 @@
-<%--
+  <%--
   Created by IntelliJ IDEA.
   User: HFQ
   Date: 2016/8/7
@@ -66,7 +66,7 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">厂家:</label>
     <div class="col-sm-7">
-      <select class="form-control" name="garageBrand" id="GarageBrand">
+      <select class="form-control" name="garage" id="Garage">
         <c:forEach items="${garages}" var="garage">
           <option value="${garage.brand}">${garage.brand}</option>
         </c:forEach>
@@ -80,7 +80,7 @@
     <div class="col-sm-7">
       <select class="form-control" name="Brand" id="Brand">
         <c:forEach items="${carBrands}" var="carBrand">
-          <option value="${carBrand.brand}">${carBrand.brand}</option>
+          <option value="${carBrand}">${carBrand}</option>
         </c:forEach>
       </select>
     </div>
@@ -90,9 +90,14 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">SFX:</label>
     <div class="col-sm-7">
-      <input class="form-control" type="text" placeholder="SFX"
-             id="Sfx" name="carSfx" required="required"/>
+      <select class="form-control" name="sfx" id="Sfx">
+      <c:forEach items="${sfxList}" var="sfx">
+        <option value="${sfx}">${sfx}</option>
+      </c:forEach>
+      </select>
+
     </div>
+    <button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Car/createSFX'">没有这个SFX，添加一个</button>
   </div>
 
   <div class="form-group">
@@ -112,7 +117,7 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">库存状态:</label>
     <div class="col-sm-7">
-      <select class="form-control" name="status" id="Status">
+      <select class="form-control" name="stockStatus" id="StockStatus">
         <c:forEach items="${statusList}" var="status">
           <option value="${status.state}">${status.state}</option>
         </c:forEach>

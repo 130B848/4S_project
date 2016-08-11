@@ -18,7 +18,7 @@ public class Car {
     private float discount;
     private String normal;
 
-    private StockStatus stockStatus = new StockStatus();
+    private String stockStatus;
 
     public String getCarID() {
         return carID;
@@ -108,11 +108,11 @@ public class Car {
         this.normal = normal;
     }
 
-    public StockStatus getStockStatus() {
+    public String getStockStatus() {
         return stockStatus;
     }
 
-    public void setStockStatus(StockStatus stockStatus) {
+    public void setStockStatus(String stockStatus) {
         this.stockStatus = stockStatus;
     }
 }

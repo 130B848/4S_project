@@ -1,15 +1,24 @@
 package CarSaleManagerSystem.Bean;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by HFQ on 2016/8/10.
  */
-public class CarBrand {
-    private Garage garage = new Garage();
+public class CarBrand implements Serializable{
+    private String garage;
     private String brand;
-    private Set<CarType> carTypeSet = new HashSet<>();
+//    private Set<CarType> carTypeSet = new HashSet<>();
+
+    public String getGarage() {
+        return garage;
+    }
+
+    public void setGarage(String garage) {
+        this.garage = garage;
+    }
 
     public String getBrand() {
         return brand;
@@ -19,19 +28,35 @@ public class CarBrand {
         this.brand = brand;
     }
 
-    public Set<CarType> getCarTypeSet() {
-        return carTypeSet;
+//    public Set<CarType> getCarTypeSet() {
+//        return carTypeSet;
+//    }
+//
+//    public void setCarTypeSet(Set<CarType> carTypeSet) {
+//        this.carTypeSet = carTypeSet;
+//    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CarBrand)) return false;
+
+        CarBrand carBrand = (CarBrand) o;
+
+        if (!garage.equals(carBrand.garage)) return false;
+        return brand.equals(carBrand.brand);
+
     }
 
-    public void setCarTypeSet(Set<CarType> carTypeSet) {
-        this.carTypeSet = carTypeSet;
+    @Override
+    public int hashCode() {
+        int result = garage.hashCode();
+        result = 31 * result + brand.hashCode();
+        return result;
     }
 
-    public Garage getGarage() {
-        return garage;
-    }
-
-    public void setGarage(Garage garage) {
-        this.garage = garage;
+    @Override
+    public String toString() {
+        return brand;
     }
 }

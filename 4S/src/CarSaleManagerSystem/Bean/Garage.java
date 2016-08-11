@@ -47,4 +47,25 @@ public class Garage {
     public void setCarBrandSet(Set<CarBrand> carBrandSet) {
         this.carBrandSet = carBrandSet;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Garage)) return false;
+
+        Garage garage = (Garage) o;
+
+        return brand.equals(garage.brand);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return brand.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return brand;
+    }
 }

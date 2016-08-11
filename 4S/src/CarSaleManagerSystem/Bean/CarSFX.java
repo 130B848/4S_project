@@ -25,4 +25,25 @@ public class CarSFX {
     public void setCarTypeSet(Set<CarType> carTypeSet) {
         this.carTypeSet = carTypeSet;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CarSFX)) return false;
+
+        CarSFX carSFX = (CarSFX) o;
+
+        return sfx.equals(carSFX.sfx);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return sfx.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return sfx;
+    }
 }

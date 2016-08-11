@@ -23,7 +23,7 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">厂家：</label>
     <div class="col-sm-7">
-      <select class="form-control" name="garageBrand" id="GarageBrand" required="required">
+      <select class="form-control" name="garage" id="Garage" required="required">
         <c:forEach items="${garages}" var="garage">
           <option value="${garage.brand}">${garage.brand}</option>
         </c:forEach>

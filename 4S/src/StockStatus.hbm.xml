@@ -7,9 +7,5 @@
     <class name="CarSaleManagerSystem.Bean.StockStatus" table="stock_status">
         <id name="state" column="stock_status" type="java.lang.String" length="32">
         </id>
-        <set name="carSet" table="vehicle_stock_status" inverse="true">
-            <key column="stock_status" not-null="true"/>
-            <one-to-many class="CarSaleManagerSystem.Bean.Car"/>
-        </set>
     </class>
 </hibernate-mapping>

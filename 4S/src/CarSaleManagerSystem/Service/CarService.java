@@ -27,6 +27,12 @@ public class CarService {
     private ColorDAO colorDAO;
 
     @Autowired
+    private SFXDAO sfxdao;
+
+    @Autowired
+    private CarTypeDAO carTypeDAO;
+
+    @Autowired
     private StockStatusDAO stockStatusDAO;
 
     public void createCar(Car car){
@@ -80,4 +86,29 @@ public class CarService {
     public List<StockStatus> getAllStockStatus(){
         return stockStatusDAO.getAllStockStatus();
     }
+
+    public void createCarSFX(CarSFX carSFX){
+        sfxdao.createCarSFX(carSFX);
+    }
+
+    public List<CarSFX> getAllCarSFX(){
+        return sfxdao.getAllCarSFXs();
+    }
+
+    public void createCarType(CarType carType){carTypeDAO.createCarType(carType);}
+
+    public List<CarType> getAllCarType(){return carTypeDAO.getAllCarType();}
+
+    public void removeCarType(CarType carType){carTypeDAO.removeCarType(carType);}
+
+    public void updateCarType(CarType carType){carTypeDAO.updateCarType(carType);}
+
+    public List<CarType> findCarTypeByGarageBrand(String garageBrand){return carTypeDAO.findCarTypeByGarageBrand(garageBrand);}
+
+    public List<CarType> findCarTypeByBrand(String brand){return carTypeDAO.findCarTypeByBrand(brand);}
+
+    public List<CarType> findCarTypeBySFX(String SFX){return carTypeDAO.findCarTypeBySFX(SFX);}
+
+    public List<CarType> findCarTypeByColor(String color){return carTypeDAO.findCarTypeByColor(color);}
+
 }

@@ -8,11 +8,17 @@ import java.util.Set;
  * Created by HFQ on 2016/8/11.
  */
 public class CarType implements Serializable{
-    private CarBrand carBrand = new CarBrand();
 
+
+//    private CarBrand carBrand = new CarBrand();
     private CarColor carColor = new CarColor();
     private CarSFX carSfx = new CarSFX();
     private Garage garage = new Garage();
+
+    private String brand;
+//    private String color;
+//    private String sfx;
+//    private String garage;
 
     private int plan;
     private int stock;
@@ -23,6 +29,15 @@ public class CarType implements Serializable{
 
 //    private Set<Car> carSet = new HashSet<>();
 //    private Set<Gift> giftSet = new HashSet<>();
+
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
 
     public String getSfx() {
         return carSfx.getSfx();
@@ -72,13 +87,6 @@ public class CarType implements Serializable{
         this.garage.setBrand(brand);
     }
 
-    public String getBrand() {
-        return carBrand.getBrand();
-    }
-
-    public void setBrand(String brand) {
-        this.carBrand.setBrand(brand);
-    }
 
     public Garage getGarage() {
         return garage;
@@ -151,19 +159,19 @@ public class CarType implements Serializable{
 
         CarType carType = (CarType) o;
 
-        if (!carBrand.equals(carType.carBrand)) return false;
         if (!carColor.equals(carType.carColor)) return false;
         if (!carSfx.equals(carType.carSfx)) return false;
-        return garage.equals(carType.garage);
+        if (!garage.equals(carType.garage)) return false;
+        return brand.equals(carType.brand);
 
     }
 
     @Override
     public int hashCode() {
-        int result = carBrand.hashCode();
-        result = 31 * result + carColor.hashCode();
+        int result = carColor.hashCode();
         result = 31 * result + carSfx.hashCode();
         result = 31 * result + garage.hashCode();
+        result = 31 * result + brand.hashCode();
         return result;
     }
 }

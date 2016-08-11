@@ -26,4 +26,25 @@ public class CarColor {
     public void setCarTypeSet(Set<CarType> carTypeSet) {
         this.carTypeSet = carTypeSet;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CarColor)) return false;
+
+        CarColor carColor = (CarColor) o;
+
+        return color.equals(carColor.color);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return color.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return color;
+    }
 }

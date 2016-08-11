@@ -62,8 +62,14 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">精品类别 :</label>
         <div class="col-sm-7">
-            <form:input cssClass="form-control" ID="Type" path="Type"/>
+            <%--<form:input cssClass="form-control" ID="Type" path="Type"/>--%>
+            <select class="form-control" name="Type" id="Type">
+                <c:forEach items="${types}" var="type">
+                    <option value="${type.type}">${type.type}</option>
+                </c:forEach>
+            </select>
         </div>
+        <button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Sale/createGiftType'">添加一个类别</button>
     </div>
 
     <div class="form-group">

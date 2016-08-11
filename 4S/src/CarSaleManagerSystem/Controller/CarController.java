@@ -31,10 +31,12 @@ public class CarController {
         List<?> carBrandList = carService.getAllCarBrands();
         List<?> colorList = carService.getAllColors();
         List<?> statusList = carService.getAllStockStatus();
+        List<?> sfxList = carService.getAllCarSFX();
         modelAndView.addObject("garages",garageList);
         modelAndView.addObject("carBrands",carBrandList);
         modelAndView.addObject("colors",colorList);
         modelAndView.addObject("statusList",statusList);
+        modelAndView.addObject("sfxList",sfxList);
         modelAndView.addObject("car",new Car());
         return modelAndView;
     }
@@ -137,5 +139,21 @@ public class CarController {
         carService.createStockStatus(stockStatus);
         return modelAndView;
     }
+
+    @RequestMapping(value = "/createSFX",method = RequestMethod.GET)
+    public ModelAndView createSFXPage(){
+        ModelAndView modelAndView = new ModelAndView("Car/createSFX");
+        modelAndView.addObject("SFX",new CarSFX());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/createSFX",method = RequestMethod.POST)
+    public ModelAndView createSFX(@ModelAttribute CarSFX carSFX){
+        ModelAndView modelAndView = new ModelAndView("redirect:/Car/createStock");
+        carService.createCarSFX(carSFX);
+        return modelAndView;
+    }
+
+
 
 }

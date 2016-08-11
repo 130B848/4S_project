@@ -36,15 +36,11 @@ CREATE TABLE `garage`(
 	PRIMARY KEY(`garage_brand`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- 车辆品牌
-DROP TABLE IF EXISTS `brand`;
-CREATE TABLE `brand`(
-	`garage_brand` VARCHAR(64) COLLATE utf8_bin NOT NULL,
-	`brand` VARCHAR(64) COLLATE utf8_bin NOT NULL,
-	PRIMARY KEY(`brand`),
-	FOREIGN KEY(`garage_brand`) REFERENCES `garage`(`garage_brand`)
+DROP TABLE IF EXISTS `sfx`;
+CREATE TABLE `sfx`(
+	`sfx` VARCHAR(64) COLLATE utf8_bin NOT NULL,
+	PRIMARY KEY(`sfx`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
 
 -- 颜色
 DROP TABLE IF EXISTS `color`;
@@ -53,6 +49,35 @@ CREATE TABLE `color`(
 	PRIMARY KEY(`color`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+DROP TABLE IF EXISTS `brand`;
+CREATE TABLE `brand`(
+	`garage_brand` VARCHAR(64) COLLATE utf8_bin NOT NULL,
+	`brand` VARCHAR(64) COLLATE utf8_bin NOT NULL,
+	PRIMARY KEY(`brand`,`garage_brand`),
+	FOREIGN KEY(`garage_brand`) REFERENCES `garage`(`garage_brand`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- 车型
+DROP TABLE IF EXISTS `vehicle_type`;
+CREATE TABLE `vehicle_type`(
+	`garage_brand` VARCHAR(64) COLLATE utf8_bin NOT NULL,
+	`brand` VARCHAR(64) COLLATE utf8_bin NOT NULL,
+	`sfx` VARCHAR(64) COLLATE utf8_bin NOT NULL,
+	`color` VARCHAR(32) COLLATE utf8_bin NOT NULL,
+	`plan` INT NOT NULL,
+	`stock` INT NOT NULL,
+	`book` INT NOT NULL,
+	`cost` DECIMAL(10,2) DEFAULT NULL,
+	`price` DECIMAL(10,2) DEFAULT NULL,
+	`discount` DECIMAL(10,2),
+	PRIMARY KEY(`garage_brand`,`brand`,`sfx`,`color`),
+	FOREIGN KEY(`brand`) REFERENCES `brand` (`brand`),
+	FOREIGN KEY(`color`) REFERENCES `color` (`color`),
+	FOREIGN KEY(`garage_brand`) REFERENCES `garage`(`garage_brand`),
+	FOREIGN KEY(`sfx`) REFERENCES `sfx`(`sfx`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
 -- 库存状态
 DROP TABLE IF EXISTS `stock_status`;
 CREATE TABLE `stock_status`(
@@ -60,15 +85,14 @@ CREATE TABLE `stock_status`(
 	PRIMARY KEY(`stock_status`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-
 -- 车辆
 DROP TABLE IF EXISTS `vehicle`;
 CREATE TABLE `vehicle` (
 	`vehicle_id` VARCHAR(128) NOT NULL,
 	`brand` VARCHAR(64) COLLATE utf8_bin NOT NULL,
 	`garage_brand` VARCHAR(64) COLLATE utf8_bin NOT NULL,
-	`sfx` VARCHAR(64) NOT NULL,
-	`color` VARCHAR(32) NOT NULL,
+	`sfx` VARCHAR(64) COLLATE utf8_bin NOT NULL,
+	`color` VARCHAR(32) COLLATE utf8_bin NOT NULL,
 	`cost` DECIMAL(10,2) DEFAULT NULL,
 	`predicted_time` TIMESTAMP default current_timestamp,
 	`purchase_time` TIMESTAMP default current_timestamp,
@@ -77,9 +101,9 @@ CREATE TABLE `vehicle` (
 	`status` VARCHAR(32) NOT NULL,
 	`normal` VARCHAR(1) NOT NULL,
 	PRIMARY KEY (`vehicle_id`),
-	FOREIGN KEY(`brand`) REFERENCES `brand` (`brand`),
-	FOREIGN KEY(`garage_brand`) REFERENCES `garage` (`garage_brand`),
-	FOREIGN KEY(`color`) REFERENCES `color` (`color`),
+	-- FOREIGN KEY (`sfx`) REFERENCES `sfx` (`sfx`),
+	FOREIGN KEY(`garage_brand`,`brand`,`sfx`,`color`) REFERENCES `vehicle_type` (`garage_brand`,`brand`,`sfx`,`color`),
+	-- FOREIGN KEY(`color`) REFERENCES `color` (`color`),
 	FOREIGN KEY(`status`) REFERENCES `stock_status` (`stock_status`)		
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -149,21 +173,37 @@ CREATE TABLE `vehicle_order` (
 	FOREIGN KEY(`vehicle_id`) REFERENCES `vehicle` (`vehicle_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+-- 精品类型
+DROP TABLE IF EXISTS `gift_type`;
+CREATE TABLE `gift_type` (
+	`type` VARCHAR(64) COLLATE utf8_bin  NOT NULL,
+	PRIMARY KEY(`type`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- 保险类型
+DROP TABLE IF EXISTS `insurance_type`;
+CREATE TABLE `insurance_type` (
+	`type` VARCHAR(64) COLLATE utf8_bin  NOT NULL,
+	PRIMARY KEY(`type`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 -- 精品
 DROP TABLE IF EXISTS `gift`;
 CREATE TABLE `gift` (
 	`gift_id` int NOT NULL,
 	`order_id` VARCHAR(64) DEFAULT NULL,
 	`name` VARCHAR(64) NOT NULL,
-	`type` VARCHAR(64) NOT NULL,
+	`type` VARCHAR(64) COLLATE utf8_bin NOT NULL,
 	`cost` DECIMAL(10,2) NOT NULL,
 	`discount` DECIMAL(10,2),
 	`actual_get_money` DECIMAL(10,2),
 	`default_price` DECIMAL(10,2) NOT NULL,
 	`selling_price` DECIMAL(10,2),
+	`garage_brand` VARCHAR(64) COLLATE utf8_bin NOT NULL,
 	`brand` VARCHAR(64) COLLATE utf8_bin NOT NULL,
 	PRIMARY KEY(`gift_id`),
-	FOREIGN KEY(`brand`) REFERENCES `brand` (`brand`),	
+	FOREIGN KEY(`garage_brand`,`brand`) REFERENCES `brand` (`garage_brand`,`brand`),
+	FOREIGN KEY(`type`) REFERENCES `gift_type` (`type`),
 	FOREIGN KEY(`order_id`) REFERENCES `vehicle_order`(`order_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -173,13 +213,39 @@ CREATE TABLE `insurance`(
 	`insurance_id` INT NOT NULL,
 	`order_id` VARCHAR(64) DEFAULT NULL,
 	`name` VARCHAR(64) NOT NULL,
-	`type` VARCHAR(64) NOT NULL,
+	`type` VARCHAR(64) COLLATE utf8_bin NOT NULL,
 	`cost` DECIMAL(10,2) NOT NULL,
 	`discount` DECIMAL(10,2),
 	`actual_get_money` DECIMAL(10,2),
 	`default_price` DECIMAL(10,2) NOT NULL,
 	`selling_price` DECIMAL(10,2),
 	PRIMARY KEY(`insurance_id`),
+	FOREIGN KEY(`type`) REFERENCES `insurance_type` (`type`),
+	FOREIGN KEY(`order_id`) REFERENCES `vehicle_order`(`order_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+-- 水平事业类型
+DROP TABLE IF EXISTS `additional_product_type`;
+CREATE TABLE `additional_product_type` (
+	`type` VARCHAR(64) COLLATE utf8_bin  NOT NULL,
+	PRIMARY KEY(`type`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- 水平事业
+DROP TABLE IF EXISTS `additional_product` ;
+CREATE TABLE `additional_product`(
+	`additional_product_id` INT NOT NULL,
+	`order_id` VARCHAR(64) DEFAULT NULL,
+	`name` VARCHAR(64) NOT NULL,
+	`type` VARCHAR(64) COLLATE utf8_bin NOT NULL,
+	`cost` DECIMAL(10,2) NOT NULL,
+	`discount` DECIMAL(10,2),
+	`actual_get_money` DECIMAL(10,2),
+	`default_price` DECIMAL(10,2) NOT NULL,
+	`selling_price` DECIMAL(10,2),
+	PRIMARY KEY(`additional_product_id`),
+	FOREIGN KEY(`type`) REFERENCES `additional_product_type` (`type`),
 	FOREIGN KEY(`order_id`) REFERENCES `vehicle_order`(`order_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 

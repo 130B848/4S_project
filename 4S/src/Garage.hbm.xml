@@ -15,5 +15,9 @@
             <key column="garage_brand" not-null="true"/>
             <one-to-many class="CarSaleManagerSystem.Bean.CarBrand"/>
         </set>
+        <set name="carTypeSet" table="vehicle_type" inverse="true">
+            <key column="garage_brand" not-null="true"/>
+            <one-to-many class="CarSaleManagerSystem.Bean.CarType"/>
+        </set>
     </class>
 </hibernate-mapping>

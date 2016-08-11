@@ -23,5 +23,9 @@
             <key column="order_id" not-null="true"></key>
             <one-to-many class="CarSaleManagerSystem.Bean.Insurance"/>
         </set>
+        <set name="additionalProductSet" inverse="true">
+            <key column="order_id" not-null="true"></key>
+            <one-to-many class="CarSaleManagerSystem.Bean.AdditionalProduct"/>
+        </set>
     </class>
 </hibernate-mapping>

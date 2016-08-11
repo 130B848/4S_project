@@ -4,8 +4,8 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="CarSaleManagerSystem.Bean.Insurance" table="insurance">
-        <id name="insuranceID" column="insurance_id" type="java.lang.Integer">
+    <class name="CarSaleManagerSystem.Bean.AdditionalProduct" table="additional_product">
+        <id name="additionalProductID" column="additional_product_id" type="java.lang.Integer">
             <generator class="increment"/>
         </id>
         <property name="name" column="name" type="java.lang.String" length="64" not-null="true"/>
@@ -19,10 +19,10 @@
                      outer-join="auto"
                      update="true"
                      insert="true"
+                     lazy="false"
                      column="order_id"
                      not-null="false"/>
-        <many-to-one name="insuranceType" class="CarSaleManagerSystem.Bean.InsuranceType" outer-join="auto" column="type" update="true" insert="true" not-null="true">
+        <many-to-one name="additionalProductType" class="CarSaleManagerSystem.Bean.AdditionalProductType" outer-join="auto" column="type" update="true" insert="true" not-null="true">
         </many-to-one>
     </class>
-
 </hibernate-mapping>

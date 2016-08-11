@@ -4,19 +4,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by HFQ on 2016/8/8.
+ * Created by HFQ on 2016/8/11.
  */
-public class CarColor {
-    private String color;
-
+public class CarSFX {
+    private String sfx;
     private Set<CarType> carTypeSet = new HashSet<>();
 
-    public String getColor() {
-        return color;
+    public String getSfx() {
+        return sfx;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setSfx(String sfx) {
+        this.sfx = sfx;
     }
 
     public Set<CarType> getCarTypeSet() {

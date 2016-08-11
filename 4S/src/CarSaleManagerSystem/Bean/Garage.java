@@ -14,6 +14,8 @@ public class Garage {
 
     private Set<CarBrand> carBrandSet = new HashSet<>();
 
+    private Set<CarType> carTypeSet = new HashSet<>();
+
     public String getBrand() {
         return brand;
     }
@@ -28,6 +30,14 @@ public class Garage {
 
     public void setCarSet(Set<Car> carSet) {
         this.carSet = carSet;
+    }
+
+    public Set<CarType> getCarTypeSet() {
+        return carTypeSet;
+    }
+
+    public void setCarTypeSet(Set<CarType> carTypeSet) {
+        this.carTypeSet = carTypeSet;
     }
 
     public Set<CarBrand> getCarBrandSet() {

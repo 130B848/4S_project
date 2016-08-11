@@ -6,13 +6,23 @@ package CarSaleManagerSystem.Bean;
 public class Insurance {
     private int insuranceID;
     private String name;
-    private String type;
+//    private String type;
     private float cost;
     private float default_price;
     private float selling_price;
     private float discount;
     private float actualGetMoney;
     private Order order ;
+
+    private InsuranceType insuranceType = new InsuranceType();
+
+    public InsuranceType getInsuranceType() {
+        return insuranceType;
+    }
+
+    public void setInsuranceType(InsuranceType insuranceType) {
+        this.insuranceType = insuranceType;
+    }
 
     public float getActualGetMoney() {
         return actualGetMoney;
@@ -55,11 +65,11 @@ public class Insurance {
     }
 
     public String getType() {
-        return type;
+        return insuranceType.getType();
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.insuranceType.setType(type);
     }
 
     public float getCost() {

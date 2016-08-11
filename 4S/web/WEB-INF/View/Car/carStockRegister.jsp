@@ -91,7 +91,7 @@
     <label class="col-sm-2 control-label">SFX:</label>
     <div class="col-sm-7">
       <input class="form-control" type="text" placeholder="SFX"
-             id="Sfx" name="sfx" required="required"/>
+             id="Sfx" name="carSfx" required="required"/>
     </div>
   </div>
 

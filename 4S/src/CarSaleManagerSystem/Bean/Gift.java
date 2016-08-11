@@ -6,15 +6,41 @@ package CarSaleManagerSystem.Bean;
 public class Gift {
     private int giftID;
     private String name;
-    private String type;
+//    private String type;
     private float cost;
     private float default_price;
     private float selling_price;
     private float discount;
     private float actualGetMoney;
     private Order order;
+    private GiftType giftType = new GiftType();
+//    private CarBrand carBrand = new CarBrand();
+    private String garage;
+    private String brand;
 
-    private CarBrand carBrand = new CarBrand();
+    public String getGarage() {
+        return garage;
+    }
+
+    public void setGarage(String garage) {
+        this.garage = garage;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public GiftType getGiftType() {
+        return giftType;
+    }
+
+    public void setGiftType(GiftType giftType) {
+        this.giftType = giftType;
+    }
 
     public float getActualGetMoney() {
         return actualGetMoney;
@@ -24,21 +50,21 @@ public class Gift {
         this.actualGetMoney = actualGetMoney;
     }
 
-    public CarBrand getCarBrand() {
-        return carBrand;
-    }
+//    public CarBrand getCarBrand() {
+//        return carBrand;
+//    }
+//
+//    public void setCarBrand(CarBrand carBrand) {
+//        this.carBrand = carBrand;
+//    }
 
-    public void setCarBrand(CarBrand carBrand) {
-        this.carBrand = carBrand;
-    }
-
-    public String getBrand() {
-        return carBrand.getBrand();
-    }
-
-    public void setBrand(String brand) {
-        this.carBrand.setBrand(brand);
-    }
+//    public String getBrand() {
+//        return carBrand.getBrand();
+//    }
+//
+//    public void setBrand(String brand) {
+//        this.carBrand.setBrand(brand);
+//    }
 
     public float getDiscount() {
         return discount;
@@ -73,11 +99,11 @@ public class Gift {
     }
 
     public String getType() {
-        return type;
+        return giftType.getType();
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.giftType.setType(type);
     }
 
     public float getCost() {

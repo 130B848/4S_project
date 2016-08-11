@@ -29,7 +29,7 @@
   </div>
 
   <div class="form-group">
-    <label class="col-sm-2 control-label">SFX: ${car.sfx}</label>
+    <label class="col-sm-2 control-label">SFX: ${car.carSfx}</label>
   </div>
 
   <div class="form-group">

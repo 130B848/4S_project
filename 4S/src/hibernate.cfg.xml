@@ -27,5 +27,11 @@
                 <mapping resource="Color.hbm.xml"/>
                 <mapping resource="StockStatus.hbm.xml"/>
                 <mapping resource="CarBrand.hbm.xml"/>
+                <mapping resource="InsuranceType.hbm.xml"/>
+                <mapping resource="GiftType.hbm.xml"/>
+                <mapping resource="SFX.hbm.xml"/>
+                <mapping resource="CarType.hbm.xml"/>
+                <mapping resource="AdditionalProduct.hbm.xml"/>
+                <mapping resource="AdditionalProductType.hbm.xml"/>
         </session-factory>
 </hibernate-configuration>

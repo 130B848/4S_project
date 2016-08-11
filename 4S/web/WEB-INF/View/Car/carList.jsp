@@ -39,7 +39,7 @@
           <td>${car.carID}</td>
           <td>${car.garage.brand}</td>
           <td>${car.carBrand.brand}</td>
-          <td>${car.sfx}</td>
+          <td>${car.carSfx}</td>
           <td>${car.color}</td>
           <td>${car.purchasedTime}</td>
           <td>${car.status}</td>

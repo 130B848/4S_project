@@ -15,11 +15,20 @@ public class Order {
     private Car car;
     private Set<Gift> giftSet = new HashSet<>();
     private Set<Insurance> insuranceSet = new HashSet<>();
+    private Set<AdditionalProduct> additionalProductSet = new HashSet<>();
     private float salePrice;
     private float actualGetMoney;
     private Date date;
     private String finish_status; // is finished?
     private String remark;
+
+    public Set<AdditionalProduct> getAdditionalProductSet() {
+        return additionalProductSet;
+    }
+
+    public void setAdditionalProductSet(Set<AdditionalProduct> additionalProductSet) {
+        this.additionalProductSet = additionalProductSet;
+    }
 
     public String getOrderID() {
         return orderID;

@@ -30,24 +30,26 @@
         <th>成本</th>
         <th>指导价</th>
         <th>折扣</th>
+        <th>车龄</th>
         <th colspan=3>操作</th>
       </tr>
       </thead>
       <tbody>
       <c:forEach items="${cars}" var="car">
         <tr>
-          <td>${car.carID}</td>
-          <td>${car.brand}</td>
-          <td>${car.brand}</td>
-          <td>${car.sfx}</td>
-          <td>${car.color}</td>
-          <td>${car.purchasedTime}</td>
-          <td>${car.status}</td>
-          <td>${car.cost}</td>
-          <td>${car.price}</td>
-          <td>${car.discount}</td>
+          <td>${car.key.carID}</td>
+          <td>${car.key.brand}</td>
+          <td>${car.key.brand}</td>
+          <td>${car.key.sfx}</td>
+          <td>${car.key.color}</td>
+          <td>${car.key.purchasedTime}</td>
+          <td>${car.key.stockStatus}</td>
+          <td>${car.key.cost}</td>
+          <td>${car.key.price}</td>
+          <td>${car.key.discount}</td>
+          <td>${car.value}</td>
           <td><button type="button" class="btn btn-primary" onclick="window.location='#'">购买</button></td>
-          <td><button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Car/setCost/${car.carID}'">设置成本</button></td>
+          <td><button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Car/setCost/${car.key.carID}'">设置成本</button></td>
           <td><button type="button" class="btn btn-primary" onclick="window.location='#'">更改库存状态</button></td>
         </tr>
       </c:forEach>

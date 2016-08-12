@@ -1,8 +1,6 @@
 package CarSaleManagerSystem.Bean;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by HFQ on 2016/8/11.

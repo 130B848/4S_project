@@ -23,6 +23,8 @@
   <a href="/Car/createStock">车辆入库登记</a>
   <a href="/Sale/createGift">创建精品</a>
   <a href="/Sale/listGift">精品列表</a>
+  <a href="/Car/createCarType">创建车型</a>
+  <a href="/Car/carTypeList">车型列表</a>
   <a href="/Sale/createInsurance">创建保险</a>
   <a href="/Sale/listInsurance">保险列表</a>
   <a href="/User/login">登录</a>

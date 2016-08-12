@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by HFQ on 2016/8/7.
@@ -111,4 +113,107 @@ public class CarService {
 
     public List<CarType> findCarTypeByColor(String color){return carTypeDAO.findCarTypeByColor(color);}
 
+    public List<CarType> GarageBrandFilter(List<CarType> carTypeList,String garage){
+        List<CarType> result = new ArrayList<>();
+        if(carTypeList == null){
+            return null;
+        }
+        for(int i = 0;i < carTypeList.size();i++){
+            if(carTypeList.get(i).getGarageBrand().equals(garage)){
+                result.add(carTypeList.get(i));
+            }
+        }
+        return result;
+    }
+
+    public List<CarType> BrandFilter(List<CarType> carTypeList,String carBrand){
+        List<CarType> result = new ArrayList<>();
+        if(carTypeList == null){
+            return null;
+        }
+        for(int i = 0;i < carTypeList.size();i++){
+            if(carTypeList.get(i).getBrand().equals(carBrand)){
+                result.add(carTypeList.get(i));
+            }
+        }
+        return result;
+    }
+
+    public List<CarType> SFXFilter(List<CarType> carTypeList,String sfx){
+        List<CarType> result = new ArrayList<>();
+        if(carTypeList == null){
+            return null;
+        }
+        for(int i = 0;i < carTypeList.size();i++){
+            if(carTypeList.get(i).getSfx().equals(sfx)){
+                result.add(carTypeList.get(i));
+            }
+        }
+        return result;
+    }
+
+    public List<CarType> ColorFilter(List<CarType> carTypeList,String carColor){
+        List<CarType> result = new ArrayList<>();
+        if(carTypeList == null){
+            return null;
+        }
+        for(int i = 0;i < carTypeList.size();i++){
+            if(carTypeList.get(i).getColor().equals(carColor)){
+                result.add(carTypeList.get(i));
+            }
+        }
+        return result;
+    }
+
+    public CarType getCarTypeByID(CarTypeID carTypeID) {
+        List<CarType> carTypeList = getAllCarType();
+        carTypeList = GarageBrandFilter(carTypeList,carTypeID.getGarage());
+        carTypeList = BrandFilter(carTypeList,carTypeID.getBrand());
+        carTypeList = ColorFilter(carTypeList,carTypeID.getColor());
+        carTypeList = SFXFilter(carTypeList,carTypeID.getSfx());
+        if(carTypeList == null || carTypeList.size() == 0){
+            return null;
+        }
+        return carTypeList.get(0);
+    }
+
+    public int getCarAge(String carID){
+        Car car = findCarById(carID);
+        if(car == null){
+            return -1;
+        }
+        Date purchaseDay = car.getPurchasedTime();
+        Calendar calendar = Calendar.getInstance();
+        Date today = new Date();
+
+        try {
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+            purchaseDay=sdf.parse(sdf.format(purchaseDay));
+            today = sdf.parse(sdf.format(new Date()));
+        }
+        catch (ParseException e){
+            e.printStackTrace();
+            return -1;
+        }
+        calendar.setTime(purchaseDay);
+        long time1 = calendar.getTimeInMillis();
+        calendar.setTime(today);
+        long time2 = calendar.getTimeInMillis();
+        long between_days=(time2-time1)/(1000*3600*24);
+        return Integer.parseInt(String.valueOf(between_days));
+    }
+
+    public Map<Car,Integer> getCarAgeList(){
+        List<Car> cars = getAllCars();
+        if(cars == null){
+            return null;
+        }
+        Map<Car,Integer> result = new HashMap<>();
+        int age;
+        for(int i = 0;i < cars.size();i++){
+            age = getCarAge(cars.get(i).getCarID());
+            result.put(cars.get(i),age);
+        }
+        return result;
+    }
 }

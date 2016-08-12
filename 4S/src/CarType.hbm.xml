@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="CarSaleManagerSystem.Bean.CarType" table="car_type">
+    <class name="CarSaleManagerSystem.Bean.CarType" table="vehicle_type">
         <!--<id name="brand" type="java.lang.String" length="64" column="brand">-->
         <!--</id>-->
         <composite-id>

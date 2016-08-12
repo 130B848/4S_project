@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by HFQ on 2016/8/7.
@@ -54,7 +56,8 @@ public class CarController {
 //        if (modelAndView != null)
 //            return modelAndView;
         ModelAndView modelAndView = new ModelAndView("Car/carList");
-        List<?> carList = carService.getAllCars();
+//        List<?> carList = carService.getAllCars();
+        Map<Car, Integer> carList = carService.getCarAgeList();
         modelAndView.addObject("cars",carList);
         return modelAndView;
     }
@@ -153,6 +156,77 @@ public class CarController {
         carService.createCarSFX(carSFX);
         return modelAndView;
     }
+
+    /*
+    *CarType controller
+     */
+
+    @RequestMapping(value = "/createCarType",method = RequestMethod.GET)
+    public ModelAndView createCarTypePage(){
+        ModelAndView modelAndView = new ModelAndView("Car/createCarType");
+        List<?> garageList = carService.getAllGarages();
+        List<?> carBrandList = carService.getAllCarBrands();
+        List<?> colorList = carService.getAllColors();
+        List<?> sfxList = carService.getAllCarSFX();
+        modelAndView.addObject("garages",garageList);
+        modelAndView.addObject("carBrands",carBrandList);
+        modelAndView.addObject("colors",colorList);
+        modelAndView.addObject("sfxes",sfxList);
+        modelAndView.addObject("car",new Car());
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/createCarType",method = RequestMethod.POST)
+    public ModelAndView createCarType(@ModelAttribute CarType carType){
+        ModelAndView modelAndView = new ModelAndView("redirect:/Car/carTypeList");
+        carService.createCarType(carType);
+        return modelAndView;
+    }
+    @RequestMapping(value = "/carTypeList",method = RequestMethod.GET)
+    public ModelAndView listCarType(HttpSession session) {
+
+        ModelAndView modelAndView = new ModelAndView("Car/carTypeList");
+        List<?> carTypeList = carService.getAllCarType();
+        modelAndView.addObject("carTypes",carTypeList);
+        return modelAndView;
+    }
+    @RequestMapping(value = "/deleteCarType",method = RequestMethod.POST)
+    public ModelAndView removeCarType(HttpServletRequest request){
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/Car/carTypeList");
+        String garage = request.getParameter("garage");
+        String brand = request.getParameter("brand");
+        String color = request.getParameter("color");
+        String sfx = request.getParameter("sfx");
+        CarTypeID carTypeID = new CarTypeID(garage,brand,sfx,color);
+        CarType carType = carService.getCarTypeByID(carTypeID);
+//        carTypeList = carService.BrandFilter(carTypeList, request.getParameter("brand"));
+//        carTypeList = carService.ColorFilter(carTypeList,request.getParameter("color"));
+//        carTypeList = carService.SFXFilter(carTypeList,request.getParameter("sfx"));
+        if(carType != null) {
+            carService.removeCarType(carType);
+        }
+        return modelAndView;
+    }
+
+//    @RequestMapping(value = "/updateCarTypePlanPage",method = RequestMethod.POST)
+//    public ModelAndView updateCarTypePage(@ModelAttribute CarType carType){
+//        ModelAndView modelAndView = new ModelAndView("/Car/carTypePlan");
+//        CarType carType1 = carService.findCarTypeById(carType.getGarageBrand(),carType.getBrand(),carType.getSfx(),carType.getColor());
+//        modelAndView.addObject("carType",carType1);
+//        return modelAndView;
+//    }
+//
+//    @RequestMapping(value = "/updateCarTypePlan",method = RequestMethod.POST)
+//    public ModelAndView updateCarType(@ModelAttribute CarType carType){
+//        ModelAndView modelAndView = new ModelAndView("/Car/carTypePlan");
+//        // CarType carType1 = carService.findCarTypeById(carType.getGarageBrand(),carType.getBrand(),carType.getSfx(),carType.getColor());
+//        carService.updateCarType(carType);
+//        modelAndView.addObject("carType",carType);
+//        return modelAndView;
+//    }
+
 
 
 

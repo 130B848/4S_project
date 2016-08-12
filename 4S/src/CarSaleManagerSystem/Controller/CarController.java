@@ -176,7 +176,6 @@ public class CarController {
         return modelAndView;
     }
 
-
     @RequestMapping(value = "/createCarType",method = RequestMethod.POST)
     public ModelAndView createCarType(@ModelAttribute CarType carType){
         ModelAndView modelAndView = new ModelAndView("redirect:/Car/carTypeList");

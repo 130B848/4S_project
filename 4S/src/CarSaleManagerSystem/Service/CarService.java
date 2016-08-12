@@ -57,6 +57,10 @@ public class CarService {
         return carDAO.findCarById(carID);
     }
 
+    public Boolean carExist(String carID) {
+        return findCarById(carID) != null;
+    }
+
     public void createGarage(Garage garage){
         garageDAO.createGarage(garage);
     }
@@ -114,6 +118,9 @@ public class CarService {
     public List<CarType> findCarTypeByColor(String color){return carTypeDAO.findCarTypeByColor(color);}
 
     public List<CarType> GarageBrandFilter(List<CarType> carTypeList,String garage){
+        if(garage == null){
+            return carTypeList;
+        }
         List<CarType> result = new ArrayList<>();
         if(carTypeList == null){
             return null;
@@ -127,6 +134,9 @@ public class CarService {
     }
 
     public List<CarType> BrandFilter(List<CarType> carTypeList,String carBrand){
+        if(carBrand == null){
+            return carTypeList;
+        }
         List<CarType> result = new ArrayList<>();
         if(carTypeList == null){
             return null;
@@ -140,6 +150,9 @@ public class CarService {
     }
 
     public List<CarType> SFXFilter(List<CarType> carTypeList,String sfx){
+        if(sfx == null){
+            return carTypeList;
+        }
         List<CarType> result = new ArrayList<>();
         if(carTypeList == null){
             return null;
@@ -153,6 +166,9 @@ public class CarService {
     }
 
     public List<CarType> ColorFilter(List<CarType> carTypeList,String carColor){
+        if(carColor == null){
+            return carTypeList;
+        }
         List<CarType> result = new ArrayList<>();
         if(carTypeList == null){
             return null;
@@ -216,4 +232,99 @@ public class CarService {
         }
         return result;
     }
+
+    public List<Car> CarGarageBrandFilter(List<Car> cars,String garage){
+        if(garage == null){
+            return cars;
+        }
+        List<Car> result = new ArrayList<>();
+        if(cars == null){
+            return null;
+        }
+        for(int i = 0;i < cars.size();i++){
+            if(cars.get(i).getGarage().equals(garage)){
+                result.add(cars.get(i));
+            }
+        }
+        return result;
+    }
+
+    public List<Car> CarBrandFilter(List<Car> cars,String brand){
+        if(brand == null){
+            return cars;
+        }
+        List<Car> result = new ArrayList<>();
+        if(cars == null){
+            return null;
+        }
+        for(int i = 0;i < cars.size();i++){
+            if(cars.get(i).getBrand().equals(brand)){
+                result.add(cars.get(i));
+            }
+        }
+        return result;
+    }
+
+    public List<Car> CarColorFilter(List<Car> cars,String color){
+        if(color == null){
+            return cars;
+        }
+        List<Car> result = new ArrayList<>();
+        if(cars == null){
+            return null;
+        }
+        for(int i = 0;i < cars.size();i++){
+            if(cars.get(i).getColor().equals(color)){
+                result.add(cars.get(i));
+            }
+        }
+        return result;
+    }
+
+    public List<Car> CarSFXFilter(List<Car> cars,String SFX){
+        if(SFX == null){
+            return cars;
+        }
+        List<Car> result = new ArrayList<>();
+        if(cars == null){
+            return null;
+        }
+        for(int i = 0;i < cars.size();i++){
+            if(cars.get(i).getSfx().equals(SFX)){
+                result.add(cars.get(i));
+            }
+        }
+        return result;
+    }
+
+    public List<Car> findCarByCarType(CarTypeID carTypeID){
+        List<Car> result = getAllCars();
+        result = CarGarageBrandFilter(result,carTypeID.getGarage());
+        result = CarBrandFilter(result,carTypeID.getBrand());
+        result = CarColorFilter(result,carTypeID.getColor());
+        result = CarSFXFilter(result,carTypeID.getSfx());
+        if(result != null && result.size() > 0){
+            return result;
+        }
+        return null;
+    }
+
+    public List<CarBrand> getCarBrandsByGarage(String garage){
+        List<CarBrand> carBrandList = getAllCarBrands();
+        List<CarBrand> result = new ArrayList<>();
+        if(garage == null){
+            return carBrandList;
+        }
+        if(carBrandList == null || carBrandList.size() == 0){
+            return null;
+        }
+        for(int i = 0;i < carBrandList.size();i++){
+            if(carBrandList.get(i).getGarage().equals(garage)){
+                result.add(carBrandList.get(i));
+            }
+        }
+        return result;
+    }
+
+    
 }

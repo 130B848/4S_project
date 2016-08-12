@@ -193,46 +193,6 @@ public class CarService {
         return carTypeList.get(0);
     }
 
-    public int getCarAge(String carID){
-        Car car = findCarById(carID);
-        if(car == null){
-            return -1;
-        }
-        Date purchaseDay = car.getPurchasedTime();
-        Calendar calendar = Calendar.getInstance();
-        Date today = new Date();
-
-        try {
-            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-            purchaseDay=sdf.parse(sdf.format(purchaseDay));
-            today = sdf.parse(sdf.format(new Date()));
-        }
-        catch (ParseException e){
-            e.printStackTrace();
-            return -1;
-        }
-        calendar.setTime(purchaseDay);
-        long time1 = calendar.getTimeInMillis();
-        calendar.setTime(today);
-        long time2 = calendar.getTimeInMillis();
-        long between_days=(time2-time1)/(1000*3600*24);
-        return Integer.parseInt(String.valueOf(between_days));
-    }
-
-    public Map<Car,Integer> getCarAgeList(){
-        List<Car> cars = getAllCars();
-        if(cars == null){
-            return null;
-        }
-        Map<Car,Integer> result = new HashMap<>();
-        int age;
-        for(int i = 0;i < cars.size();i++){
-            age = getCarAge(cars.get(i).getCarID());
-            result.put(cars.get(i),age);
-        }
-        return result;
-    }
-
     public List<Car> CarGarageBrandFilter(List<Car> cars,String garage){
         if(garage == null){
             return cars;
@@ -309,6 +269,60 @@ public class CarService {
         return null;
     }
 
+    public int getCarAge(String carID){
+        Car car = findCarById(carID);
+        if(car == null){
+            return -1;
+        }
+        Date purchaseDay = car.getPurchasedTime();
+        Calendar calendar = Calendar.getInstance();
+        Date today = new Date();
+
+        try {
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+            purchaseDay=sdf.parse(sdf.format(purchaseDay));
+            today = sdf.parse(sdf.format(new Date()));
+        }
+        catch (ParseException e){
+            e.printStackTrace();
+            return -1;
+        }
+        calendar.setTime(purchaseDay);
+        long time1 = calendar.getTimeInMillis();
+        calendar.setTime(today);
+        long time2 = calendar.getTimeInMillis();
+        long between_days=(time2-time1)/(1000*3600*24);
+        return Integer.parseInt(String.valueOf(between_days));
+    }
+
+    public Map<Car,Integer> getCarAgeList(){
+        List<Car> cars = getAllCars();
+        if(cars == null){
+            return null;
+        }
+        Map<Car,Integer> result = new HashMap<>();
+        int age;
+        for(int i = 0;i < cars.size();i++){
+            age = getCarAge(cars.get(i).getCarID());
+            result.put(cars.get(i),age);
+        }
+        return result;
+    }
+
+    public Map<Car,Integer> getCarAgeListByCarType(CarTypeID carTypeID){
+        List<Car> cars = findCarByCarType(carTypeID);
+        if(cars == null){
+            return null;
+        }
+        Map<Car,Integer> result = new HashMap<>();
+        int age;
+        for(int i = 0;i < cars.size();i++){
+            age = getCarAge(cars.get(i).getCarID());
+            result.put(cars.get(i),age);
+        }
+        return result;
+    }
+
     public List<CarBrand> getCarBrandsByGarage(String garage){
         List<CarBrand> carBrandList = getAllCarBrands();
         List<CarBrand> result = new ArrayList<>();
@@ -326,5 +340,5 @@ public class CarService {
         return result;
     }
 
-    
+
 }

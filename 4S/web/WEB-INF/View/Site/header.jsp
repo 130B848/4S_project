@@ -43,10 +43,10 @@
     <div class="navbar-collapse collapse">
       <!-- Main navigation -->
       <ul class="nav navbar-nav">
-        <li class=""><a href="#">首页</a></li>
+        <li class=""><a href="${pageContext.request.contextPath}/Site/home">首页</a></li>
 
-        <li class=""><a href="#">页面1</a></li>
-        <li class=""><a href="#">页面2</a></li>
+        <li class=""><a href="${pageContext.request.contextPath}/Car/carTypeList">车型列表</a></li>
+        <li class=""><a href="${pageContext.request.contextPath}/Site/DataManagement">基本数据管理页面</a></li>
 
         <%
           if(session.getAttribute("userID") != null){

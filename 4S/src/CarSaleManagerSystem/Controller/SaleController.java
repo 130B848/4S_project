@@ -148,6 +148,14 @@ public class SaleController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/listGiftType", method = RequestMethod.GET)
+    public ModelAndView listGiftType(){
+        ModelAndView modelAndView = new ModelAndView("Sale/giftTypeList");
+        List<?> giftTypeList = giftService.getAllGiftTypes();
+        modelAndView.addObject("giftTypes", giftTypeList);
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/createInsuranceType",method = RequestMethod.GET)
     public ModelAndView createInsuranceTypePage(){
         ModelAndView modelAndView = new ModelAndView("Sale/createInsuranceType");
@@ -162,5 +170,12 @@ public class SaleController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/listInsuranceType", method = RequestMethod.GET)
+    public ModelAndView listInsuranceType(){
+        ModelAndView modelAndView = new ModelAndView("Sale/insuranceTypeList");
+        List<?> insuranceTypes = insuranceService.getAllInsuranceType();
+        modelAndView.addObject("insuranceTypes",insuranceTypes);
+        return modelAndView;
+    }
 
 }

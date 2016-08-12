@@ -29,7 +29,7 @@
   </div>
 
   <div class="form-group">
-    <label class="col-sm-2 control-label">SFX: ${car.carSfx}</label>
+    <label class="col-sm-2 control-label">SFX: ${car.sfx}</label>
   </div>
 
   <div class="form-group">
@@ -37,7 +37,7 @@
   </div>
 
   <div class="form-group">
-    <label class="col-sm-2 control-label">库存状态: ${car.status}</label>
+    <label class="col-sm-2 control-label">库存状态: ${car.stockStatus}</label>
   </div>
 
   <div class="form-group">

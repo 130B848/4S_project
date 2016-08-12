@@ -38,7 +38,7 @@
       <c:forEach items="${cars}" var="car">
         <tr>
           <td>${car.key.carID}</td>
-          <td>${car.key.brand}</td>
+          <td>${car.key.garage}</td>
           <td>${car.key.brand}</td>
           <td>${car.key.sfx}</td>
           <td>${car.key.color}</td>

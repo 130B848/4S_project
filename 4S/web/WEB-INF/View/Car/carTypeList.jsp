@@ -38,7 +38,7 @@
                     <td><button type="button" class="btn btn-primary" onclick="deleteCarType('${carType.garage.brand}','${carType.brand}','${carType.carSfx.sfx}','${carType.carColor.color}')">删除</button></td>
                     <td><button type="button" class="btn btn-primary" onclick="updatePlan('${carType.garage.brand}','${carType.brand}','${carType.carSfx.sfx}','${carType.carColor.color}')">添加计划</button></td>
                     <td><button type="button" class="btn btn-primary" onclick="window.location='#'">设置价格</button></td>
-                    <td><button type="button" class="btn btn-primary" onclick="window.location='#'">查看库存</button></td>
+                    <td><button type="button" class="btn btn-primary" onclick="getStock('${carType.garage.brand}','${carType.brand}','${carType.carSfx.sfx}','${carType.carColor.color}')">查看库存</button></td>
                     <td><button type="button" class="btn btn-primary" onclick="window.location='#'">向厂家订车请求</button></td>
                 </tr>
             </c:forEach>
@@ -68,30 +68,37 @@
         post("${pageContext.request.contextPath}/Car/updateCarTypePlanPage", data);
     };
 
+    function getStock(garage,brand,sfx,color) {
+        var data = {"garage":garage, "brand":brand,"sfx":sfx,"color":color};
+        post("${pageContext.request.contextPath}/Car/carListByCarType", data);
+    };
+
     function deleteCarType(garage,brand,sfx,color){
-        var temp = document.createElement("form");
-        temp.action = "${pageContext.request.contextPath}/Car/deleteCarType";
-        temp.method = "POST";
-        temp.style.display = "none";
-        var opt1 = document.createElement("textarea");
-        opt1.name = "garage";
-        opt1.value = garage;
-        var opt2 = document.createElement("textarea");
-        opt2.name = "brand";
-        opt2.value = brand;
-        var opt3 = document.createElement("textarea");
-        opt3.name = "color";
-        opt3.value = color;
-        var opt4 = document.createElement("textarea");
-        opt4.name = "sfx";
-        opt4.value = sfx;
-        temp.appendChild(opt1);
-        temp.appendChild(opt2);
-        temp.appendChild(opt3);
-        temp.appendChild(opt4);
-        document.body.appendChild(temp);
-        temp.submit();
-        return temp;
+        var data = {"garage":garage, "brand":brand,"sfx":sfx,"color":color};
+        post("${pageContext.request.contextPath}/Car/deleteCarType", data);
+        <%--var temp = document.createElement("form");--%>
+        <%--temp.action = "${pageContext.request.contextPath}/Car/deleteCarType";--%>
+        <%--temp.method = "POST";--%>
+        <%--temp.style.display = "none";--%>
+        <%--var opt1 = document.createElement("textarea");--%>
+        <%--opt1.name = "garage";--%>
+        <%--opt1.value = garage;--%>
+        <%--var opt2 = document.createElement("textarea");--%>
+        <%--opt2.name = "brand";--%>
+        <%--opt2.value = brand;--%>
+        <%--var opt3 = document.createElement("textarea");--%>
+        <%--opt3.name = "color";--%>
+        <%--opt3.value = color;--%>
+        <%--var opt4 = document.createElement("textarea");--%>
+        <%--opt4.name = "sfx";--%>
+        <%--opt4.value = sfx;--%>
+        <%--temp.appendChild(opt1);--%>
+        <%--temp.appendChild(opt2);--%>
+        <%--temp.appendChild(opt3);--%>
+        <%--temp.appendChild(opt4);--%>
+        <%--document.body.appendChild(temp);--%>
+        <%--temp.submit();--%>
+        <%--return temp;--%>
     };
 </script>
 

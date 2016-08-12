@@ -157,6 +157,19 @@ public class CarController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/carListByCarType",method = RequestMethod.POST)
+    public ModelAndView carListByCarType(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView("Car/carList");
+        String garage = request.getParameter("garage");
+        String brand = request.getParameter("brand");
+        String color = request.getParameter("color");
+        String sfx = request.getParameter("sfx");
+        CarTypeID carTypeID = new CarTypeID(garage,brand,sfx,color);
+        Map<Car,Integer> carList = carService.getCarAgeListByCarType(carTypeID);
+        modelAndView.addObject("cars",carList);
+        return modelAndView;
+    }
+
     /*
     *CarType controller
      */
@@ -209,22 +222,19 @@ public class CarController {
         return modelAndView;
     }
 
-//    @RequestMapping(value = "/updateCarTypePlanPage",method = RequestMethod.POST)
-//    public ModelAndView updateCarTypePage(@ModelAttribute CarType carType){
-//        ModelAndView modelAndView = new ModelAndView("/Car/carTypePlan");
-//        CarType carType1 = carService.findCarTypeById(carType.getGarageBrand(),carType.getBrand(),carType.getSfx(),carType.getColor());
-//        modelAndView.addObject("carType",carType1);
-//        return modelAndView;
-//    }
-//
-//    @RequestMapping(value = "/updateCarTypePlan",method = RequestMethod.POST)
-//    public ModelAndView updateCarType(@ModelAttribute CarType carType){
-//        ModelAndView modelAndView = new ModelAndView("/Car/carTypePlan");
-//        // CarType carType1 = carService.findCarTypeById(carType.getGarageBrand(),carType.getBrand(),carType.getSfx(),carType.getColor());
-//        carService.updateCarType(carType);
-//        modelAndView.addObject("carType",carType);
-//        return modelAndView;
-//    }
+    @RequestMapping(value = "/updateCarTypePlanPage",method = RequestMethod.POST)
+    public ModelAndView updateCarTypePage(@ModelAttribute CarType carType){
+        ModelAndView modelAndView = new ModelAndView("/Car/carTypePlan");
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/updateCarTypePlan",method = RequestMethod.POST)
+    public ModelAndView updateCarType(@ModelAttribute CarType carType){
+        ModelAndView modelAndView = new ModelAndView("/Car/carTypePlan");
+
+        return modelAndView;
+    }
 
 
 

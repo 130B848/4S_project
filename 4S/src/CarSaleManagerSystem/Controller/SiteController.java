@@ -17,4 +17,10 @@ public class SiteController {
         ModelAndView modelAndView = new ModelAndView("Site/home");
         return modelAndView;
     }
+
+    @RequestMapping(value = "/DataManagement",method = RequestMethod.GET)
+    public ModelAndView dataManagementPage(){
+        ModelAndView modelAndView = new ModelAndView("Site/DataManagement");
+        return modelAndView;
+    }
 }

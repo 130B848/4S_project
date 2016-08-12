@@ -4,14 +4,13 @@ import CarSaleManagerSystem.Bean.*;
 import CarSaleManagerSystem.Service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -236,6 +235,19 @@ public class CarController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/selectCarBrand")
+    public @ResponseBody
+    Map<String,Object> selectCarBrand(HttpServletRequest request) throws IOException {
+        System.out.println(request.getParameter("garage"));
+        Map<String,Object> map = new HashMap<String,Object>();
+
+        String garage = request.getParameter("garage");
+        List<CarBrand> brands = carService.getCarBrandsByGarage(garage);
+        for (int i =0; i < brands.size(); i ++) {
+            map.put(String.valueOf(i),brands.get(i).getBrand());
+        }
+        return map;
+    }
 
 
 

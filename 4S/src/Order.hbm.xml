@@ -7,7 +7,7 @@
     <class name="CarSaleManagerSystem.Bean.Order" table="vehicle_order">
         <id name="orderID" type="java.lang.String" length="64" column="order_id">
         </id>
-        <property name="finish_status" column="finish_state" type="java.lang.String" length="1" not-null="true"/>
+        <property name="finish_status" column="finish_status" type="java.lang.String" length="1" not-null="true"/>
         <property name="salePrice" column="sale_price" type="java.lang.Float" precision="10" scale="2" not-null="true"/>
         <property name="actualGetMoney" column="actual_get_money" type="java.lang.Float" precision="10" scale="2" not-null="false"/>
         <property name="date" column="create_time" type="java.util.Date" not-null="true"/>

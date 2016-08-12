@@ -23,7 +23,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">厂家:</label>
         <div class="col-sm-7" id = "garage">
-            <select class="form-control" name="garageBrand" id="GarageBrand">
+            <select class="form-control" name="garageBrand" id="GarageBrand" onchange="brandSelect()">
                 <%--<option value="posche" onclick="brandSelect">保时捷</option>--%>
                 <%--<option value="BMW" onclick="brandSelect">宝马</option>--%>
                 <c:forEach items="${garages}" var="garage">
@@ -39,9 +39,9 @@
         <div class="col-sm-7">
             <select class="form-control" name="Brand" id="Brand">
               
-                <c:forEach items="${carBrands}" var="carBrand">
-                    <option value="${carBrand.brand}">${carBrand.brand}</option>
-                </c:forEach>
+                <%--<c:forEach items="${carBrands}" var="carBrand">--%>
+                    <%--<option value="${carBrand.brand}">${carBrand.brand}</option>--%>
+                <%--</c:forEach>--%>
             </select>
         </div>
     </div>
@@ -82,7 +82,27 @@
 <script>
     function brandSelect() {
 
+        var obj = document.getElementById("GarageBrand");
+        var index = obj.selectedIndex; // 选中索引
+        var value = obj.options[index].value; // 选中值
+        $.ajax({
+            url:"${pageContext.request.contextPath}/Car/selectCarBrand",
+            data: {"garage":value},
+            type:'POST',
+            dataType:'JSON',
+            cache:true,
+            success:function(data){
+                //alert(data.size());
+                var brand = document.getElementById("Brand");
+                var jsonObj=eval(data);
+                brand.innerHTML = "";
+                $.each(jsonObj, function (i, item) {
+                    brand.innerHTML = brand.innerHTML + "<option value=" + JSON.stringify(item) + ">" +JSON.stringify(item).substr(1,JSON.stringify(item).length - 2) + "</option>";
+                });
+            }
+        })
     }
+
 </script>
 </body>
 </html>

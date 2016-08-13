@@ -180,7 +180,14 @@ public class CarService {
 
     public List<CarType> getAllCarType(){return carTypeDAO.getAllCarType();}
 
-    public void removeCarType(CarType carType){carTypeDAO.removeCarType(carType);}
+    public void removeCarType(CarType carType){
+        CarTypeID carTypeID = new CarTypeID(carType.getGarageBrand(),carType.getBrand(),carType.getSfx(),carType.getColor());
+        if(carTypeExist(carTypeID)){
+            carType.setValid("N");
+            carTypeDAO.updateCarType(carType);
+        }
+//        carTypeDAO.removeCarType(carType);
+    }
 
     public void updateCarType(CarType carType){carTypeDAO.updateCarType(carType);}
 

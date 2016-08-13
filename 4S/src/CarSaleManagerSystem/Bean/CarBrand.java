@@ -8,7 +8,17 @@ import java.io.Serializable;
 public class CarBrand implements Serializable{
     private String garage;
     private String brand;
+    private String valid;
 //    private Set<CarType> carTypeSet = new HashSet<>();
+
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
+    }
 
     public String getGarage() {
         return garage;

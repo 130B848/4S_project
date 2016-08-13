@@ -23,7 +23,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">厂家:</label>
         <div class="col-sm-7" id = "garage">
-            <select class="form-control" name="garageBrand" id="GarageBrand" onchange="brandSelect()">
+            <select class="form-control" name="GarageBrand" id="GarageBrand" onchange="brandSelect()">
                 <%--<option value="posche" onclick="brandSelect">保时捷</option>--%>
                 <%--<option value="BMW" onclick="brandSelect">宝马</option>--%>
                 <c:forEach items="${garages}" var="garage">
@@ -80,6 +80,10 @@
 <jsp:include page="../Site/footer.jsp"/>
 
 <script>
+    $(document).ready(function() {
+        brandSelect();
+    });
+
     function brandSelect() {
 
         var obj = document.getElementById("GarageBrand");

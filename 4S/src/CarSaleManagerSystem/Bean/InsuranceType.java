@@ -8,7 +8,18 @@ import java.util.Set;
  */
 public class InsuranceType {
     private String type;
+    private String valid;
+
+
     private Set<Insurance> insuranceSet = new HashSet<>();
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
+    }
 
     public String getType() {
         return type;

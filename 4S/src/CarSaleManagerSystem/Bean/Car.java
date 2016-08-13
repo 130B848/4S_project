@@ -11,6 +11,7 @@ public class Car {
     private String brand;
     private String sfx;
     private String color;
+    private String carNumber;
     private float cost;
     private Date predictedTime;
     private Date purchasedTime;
@@ -19,6 +20,23 @@ public class Car {
     private String normal;
 
     private String stockStatus;
+    private String valid;
+
+    public String getCarNumber() {
+        return carNumber;
+    }
+
+    public void setCarNumber(String carNumber) {
+        this.carNumber = carNumber;
+    }
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
+    }
 
     public String getCarID() {
         return carID;

@@ -7,6 +7,7 @@
     <class name="CarSaleManagerSystem.Bean.CarSFX" table="sfx">
         <id name="sfx" column="sfx" type="java.lang.String" length="64">
         </id>
+        <property name="valid" column="valid" type="java.lang.String" length="1"/>
         <set name="carTypeSet" table="vehicle_type" inverse="true">
             <key column="sfx" not-null="true"/>
             <one-to-many class="CarSaleManagerSystem.Bean.CarType"/>

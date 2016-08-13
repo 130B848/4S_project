@@ -18,6 +18,8 @@
         <property name="price" column="price" type="java.lang.Float" precision="10" scale="2"/>
         <property name="stockStatus" column="status" type="java.lang.String" length="32"/>
         <property name="normal" column="normal" type="java.lang.String" length="1"/>
+        <property name="carNumber" column="vehicle_number" type="java.lang.String" length="16"/>
+        <property name="valid" column="valid" type="java.lang.String" length="1"/>
         <!--<many-to-one name="garage" class="CarSaleManagerSystem.Bean.Garage" outer-join="auto" column="garage_brand" update="true" insert="true" not-null="true">-->
         <!--</many-to-one>-->
         <!--<many-to-one name="carBrand" class="CarSaleManagerSystem.Bean.CarBrand" outer-join="auto" update="true" insert="true" not-null="true">-->

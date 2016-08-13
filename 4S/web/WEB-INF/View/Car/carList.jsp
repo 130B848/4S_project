@@ -48,9 +48,9 @@
           <td>${car.key.price}</td>
           <td>${car.key.discount}</td>
           <td>${car.value}</td>
-          <td><button type="button" class="btn btn-primary" onclick="window.location='#'">购买</button></td>
+          <td><button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Order/addCarToOrder/${car.key.carID}'">购买</button></td>
           <td><button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Car/setCost/${car.key.carID}'">设置成本</button></td>
-          <td><button type="button" class="btn btn-primary" onclick="window.location='#'">更改库存状态</button></td>
+          <td><button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Car/setStockStatus/${car.key.carID}'">更改库存状态</button></td>
         </tr>
       </c:forEach>
       </tbody>

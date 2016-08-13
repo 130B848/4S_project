@@ -8,6 +8,7 @@ CREATE TABLE `user` (
 	`username` VARCHAR(32) COLLATE utf8_bin NOT NULL,
 	`password` VARCHAR(128) COLLATE utf8_bin NOT NULL,
 	`type` VARCHAR(64) COLLATE utf8_bin NOT NULL,
+	`valid` VARCHAR(1) DEFAULT 'Y',
 	PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -33,12 +34,14 @@ CREATE TABLE `user_role` (
 DROP TABLE IF EXISTS `garage`;
 CREATE TABLE `garage`(
 	`garage_brand` VARCHAR(64) COLLATE utf8_bin NOT NULL,
+	`valid` VARCHAR(1) DEFAULT 'Y',
 	PRIMARY KEY(`garage_brand`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 DROP TABLE IF EXISTS `sfx`;
 CREATE TABLE `sfx`(
 	`sfx` VARCHAR(64) COLLATE utf8_bin NOT NULL,
+	`valid` VARCHAR(1) DEFAULT 'Y',
 	PRIMARY KEY(`sfx`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -46,6 +49,7 @@ CREATE TABLE `sfx`(
 DROP TABLE IF EXISTS `color`;
 CREATE TABLE `color`(
 	`color` VARCHAR(32) COLLATE utf8_bin NOT NULL,
+	`valid` VARCHAR(1) DEFAULT 'Y',
 	PRIMARY KEY(`color`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -53,6 +57,7 @@ DROP TABLE IF EXISTS `brand`;
 CREATE TABLE `brand`(
 	`garage_brand` VARCHAR(64) COLLATE utf8_bin NOT NULL,
 	`brand` VARCHAR(64) COLLATE utf8_bin NOT NULL,
+	`valid` VARCHAR(1) DEFAULT 'Y',
 	PRIMARY KEY(`brand`,`garage_brand`),
 	FOREIGN KEY(`garage_brand`) REFERENCES `garage`(`garage_brand`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -70,6 +75,7 @@ CREATE TABLE `vehicle_type`(
 	`cost` DECIMAL(10,2) DEFAULT NULL,
 	`price` DECIMAL(10,2) DEFAULT NULL,
 	`discount` DECIMAL(10,2),
+	`valid` VARCHAR(1) DEFAULT 'Y',
 	PRIMARY KEY(`garage_brand`,`brand`,`sfx`,`color`),
 	FOREIGN KEY(`brand`) REFERENCES `brand` (`brand`),
 	FOREIGN KEY(`color`) REFERENCES `color` (`color`),
@@ -82,6 +88,7 @@ CREATE TABLE `vehicle_type`(
 DROP TABLE IF EXISTS `stock_status`;
 CREATE TABLE `stock_status`(
 	`stock_status` VARCHAR(32) COLLATE utf8_bin NOT NULL,
+	`valid` VARCHAR(1) DEFAULT 'Y',
 	PRIMARY KEY(`stock_status`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -100,6 +107,8 @@ CREATE TABLE `vehicle` (
 	`discount` DECIMAL(10,2),
 	`status` VARCHAR(32) NOT NULL,
 	`normal` VARCHAR(1) NOT NULL,
+	`vehicle_number` VARCHAR(16) DEFAULT NULL,
+	`valid` VARCHAR(1) DEFAULT 'Y',
 	PRIMARY KEY (`vehicle_id`),
 	-- FOREIGN KEY (`sfx`) REFERENCES `sfx` (`sfx`),
 	FOREIGN KEY(`garage_brand`,`brand`,`sfx`,`color`) REFERENCES `vehicle_type` (`garage_brand`,`brand`,`sfx`,`color`),
@@ -153,6 +162,7 @@ CREATE TABLE `customer` (
 	`area` VARCHAR(64) COLLATE utf8_bin DEFAULT NULL,
 	`years` INT DEFAULT NULL,
 	`source` VARCHAR(64) COLLATE utf8_bin DEFAULT NULL,
+	`valid` VARCHAR(1) DEFAULT 'Y',
 	PRIMARY KEY(`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 	
@@ -167,6 +177,8 @@ CREATE TABLE `vehicle_order` (
 	`sale_price` DECIMAL(10,2) NOT NULL,
 	`actual_get_money` DECIMAL(10,2),
 	`create_time` TIMESTAMP default current_timestamp,
+	`predicted_pay_time` TIMESTAMP default current_timestamp,
+	`actual_pay_time` TIMESTAMP default current_timestamp,
 	`remark` VARCHAR(255) DEFAULT NULL,
 	PRIMARY KEY(`order_id`),
 	FOREIGN KEY(`customer_id`) REFERENCES `customer` (`customer_id`),
@@ -177,6 +189,7 @@ CREATE TABLE `vehicle_order` (
 DROP TABLE IF EXISTS `gift_type`;
 CREATE TABLE `gift_type` (
 	`type` VARCHAR(64) COLLATE utf8_bin  NOT NULL,
+	`valid` VARCHAR(1) DEFAULT 'Y',
 	PRIMARY KEY(`type`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -184,6 +197,7 @@ CREATE TABLE `gift_type` (
 DROP TABLE IF EXISTS `insurance_type`;
 CREATE TABLE `insurance_type` (
 	`type` VARCHAR(64) COLLATE utf8_bin  NOT NULL,
+	`valid` VARCHAR(1) DEFAULT 'Y',
 	PRIMARY KEY(`type`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -201,6 +215,7 @@ CREATE TABLE `gift` (
 	`selling_price` DECIMAL(10,2),
 	`garage_brand` VARCHAR(64) COLLATE utf8_bin NOT NULL,
 	`brand` VARCHAR(64) COLLATE utf8_bin NOT NULL,
+	`valid` VARCHAR(1) DEFAULT 'Y',
 	PRIMARY KEY(`gift_id`),
 	FOREIGN KEY(`garage_brand`,`brand`) REFERENCES `brand` (`garage_brand`,`brand`),
 	FOREIGN KEY(`type`) REFERENCES `gift_type` (`type`),
@@ -219,6 +234,7 @@ CREATE TABLE `insurance`(
 	`actual_get_money` DECIMAL(10,2),
 	`default_price` DECIMAL(10,2) NOT NULL,
 	`selling_price` DECIMAL(10,2),
+	`valid` VARCHAR(1) DEFAULT 'Y',
 	PRIMARY KEY(`insurance_id`),
 	FOREIGN KEY(`type`) REFERENCES `insurance_type` (`type`),
 	FOREIGN KEY(`order_id`) REFERENCES `vehicle_order`(`order_id`)
@@ -229,6 +245,7 @@ CREATE TABLE `insurance`(
 DROP TABLE IF EXISTS `additional_product_type`;
 CREATE TABLE `additional_product_type` (
 	`type` VARCHAR(64) COLLATE utf8_bin  NOT NULL,
+	`valid` VARCHAR(1) DEFAULT 'Y',
 	PRIMARY KEY(`type`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -244,6 +261,7 @@ CREATE TABLE `additional_product`(
 	`actual_get_money` DECIMAL(10,2),
 	`default_price` DECIMAL(10,2) NOT NULL,
 	`selling_price` DECIMAL(10,2),
+	`valid` VARCHAR(1) DEFAULT 'Y',
 	PRIMARY KEY(`additional_product_id`),
 	FOREIGN KEY(`type`) REFERENCES `additional_product_type` (`type`),
 	FOREIGN KEY(`order_id`) REFERENCES `vehicle_order`(`order_id`)
@@ -292,3 +310,14 @@ CREATE TABLE `upsell_insurance` (
 	FOREIGN KEY(`insurance_id`) REFERENCES `insurance`(`insurance_id`),
 	FOREIGN KEY(`order_id`) REFERENCES `vehicle_order`(`order_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- 资金流
+DROP TABLE IF EXISTS `money_flow`;
+CREATE TABLE `money_flow` (
+	`user_id` int NOT NULL,
+	`money` DECIMAL(10,2) NOT NULL,
+	`time` TIMESTAMP default current_timestamp,
+	`remark` VARCHAR(255) DEFAULT NULL,
+	FOREIGN KEY(`user_id`) REFERENCES `user`(`user_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+

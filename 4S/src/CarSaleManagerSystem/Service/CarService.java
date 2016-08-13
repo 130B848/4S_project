@@ -38,6 +38,14 @@ public class CarService {
     private StockStatusDAO stockStatusDAO;
 
     public void createCar(Car car){
+        if(carExist(car.getCarID())){
+            return;
+        }
+        if(carDAO.findCarById(car.getCarID()) != null){
+            car.setValid("Y");
+            carDAO.updateCar(car);
+            return;
+        }
         carDAO.createCar(car);
     }
 
@@ -46,7 +54,11 @@ public class CarService {
     }
 
     public void removeCar(Car car){
-        carDAO.removeCar(car);
+        if(carExist(car.getCarID())){
+            car.setValid("N");
+            carDAO.updateCar(car);
+        }
+//        carDAO.removeCar(car);
     }
 
     public void updateCar(Car car){
@@ -54,14 +66,29 @@ public class CarService {
     }
 
     public Car findCarById(String carID){
-        return carDAO.findCarById(carID);
+//        Car car = carDAO.findCarById(carID);
+        if(carExist(carID))
+            return carDAO.findCarById(carID);
+        return null;
     }
 
-    public Boolean carExist(String carID) {
-        return findCarById(carID) != null;
+    public boolean carExist(String carID) {
+        Car car = carDAO.findCarById(carID);
+        if(car == null || car.getValid().equals("N")){
+            return false;
+        }
+        return true;
     }
 
     public void createGarage(Garage garage){
+        if(garageExist(garage.getBrand())){
+            return;
+        }
+        if(garageDAO.findGarageByBrand(garage.getBrand()) != null){
+            garage.setValid("Y");
+            garageDAO.updateGarage(garage);
+            return;
+        }
         garageDAO.createGarage(garage);
     }
 
@@ -70,6 +97,19 @@ public class CarService {
     }
 
     public void createCarBrand(CarBrand carBrand){
+        if(brandExist(carBrand.getGarage(),carBrand.getBrand())){
+            return;
+        }
+        List<CarBrand> carBrandList = getCarBrandsByGarage(carBrand.getGarage());
+        if(carBrandList != null){
+            for(int i = 0;i < carBrandList.size();i++){
+                if(carBrandList.get(i).equals(carBrand)){
+                    carBrand.setValid("Y");
+                    carBrandDAO.updateCarBrand(carBrand);
+                    return;
+                }
+            }
+        }
         carBrandDAO.createCarBrand(carBrand);
     }
 
@@ -78,6 +118,14 @@ public class CarService {
     }
 
     public void createColor(CarColor carColor){
+        if(colorExist(carColor.getColor())){
+            return;
+        }
+        if(colorDAO.getColorByID(carColor.getColor())!=null){
+            carColor.setValid("Y");
+            colorDAO.updateColor(carColor);
+            return;
+        }
         colorDAO.createColor(carColor);
     }
 
@@ -86,6 +134,14 @@ public class CarService {
     }
 
     public void createStockStatus(StockStatus stockStatus){
+        if(stockStatusExist(stockStatus.getState())){
+            return;
+        }
+        if(stockStatusDAO.getStockStatusByID(stockStatus.getState()) != null){
+            stockStatus.setValid("Y");
+            stockStatusDAO.updateStockStatus(stockStatus);
+            return;
+        }
         stockStatusDAO.createStockStatus(stockStatus);
     }
 
@@ -94,6 +150,14 @@ public class CarService {
     }
 
     public void createCarSFX(CarSFX carSFX){
+        if(sfxExist(carSFX.getSfx())){
+            return;
+        }
+        if(sfxdao.findCarSFXById(carSFX.getSfx()) != null){
+            carSFX.setValid("Y");
+            sfxdao.updateCarSFX(carSFX);
+            return;
+        }
         sfxdao.createCarSFX(carSFX);
     }
 
@@ -101,7 +165,18 @@ public class CarService {
         return sfxdao.getAllCarSFXs();
     }
 
-    public void createCarType(CarType carType){carTypeDAO.createCarType(carType);}
+    public void createCarType(CarType carType){
+        CarTypeID carTypeID = new CarTypeID(carType.getGarageBrand(),carType.getBrand(),carType.getSfx(),carType.getColor());
+        if(carTypeExist(carTypeID)){
+            return;
+        }
+        if(getCarTypeByID(carTypeID) != null){
+            carType.setValid("Y");
+            carTypeDAO.updateCarType(carType);
+            return;
+        }
+        carTypeDAO.createCarType(carType);
+    }
 
     public List<CarType> getAllCarType(){return carTypeDAO.getAllCarType();}
 
@@ -340,6 +415,59 @@ public class CarService {
         return result;
     }
 
+    public boolean garageExist(String brand){
+        Garage garage = garageDAO.findGarageByBrand(brand);
+        if(garage == null || garage.getValid().equals('N')){
+            return false;
+        }
+        return true;
+    }
 
+    public boolean brandExist(String garage,String brand){
+        if(!garageExist(garage)){
+            return false;
+        }
+        List<CarBrand> carBrandList = getCarBrandsByGarage(garage);
+        if(carBrandList == null){
+            return false;
+        }
+        for(int i = 0;i < carBrandList.size();i++){
+            if(carBrandList.get(i).getBrand().equals(brand) && carBrandList.get(i).getValid().equals("Y")){
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public boolean colorExist(String color){
+        CarColor carColor = colorDAO.getColorByID(color);
+        if(carColor == null || carColor.getValid().equals("N")){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean sfxExist(String sfx){
+        CarSFX carSFX = sfxdao.findCarSFXById(sfx);
+        if(carSFX == null || carSFX.getValid().equals("N")){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean carTypeExist(CarTypeID carTypeID){
+        CarType carType = getCarTypeByID(carTypeID);
+        if(carType == null || carType.getValid().equals("N")){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean stockStatusExist(String stock){
+        StockStatus stockStatus = stockStatusDAO.getStockStatusByID(stock);
+        if(stockStatus == null || stockStatus.getValid().equals("N")){
+            return false;
+        }
+        return true;
+    }
 }

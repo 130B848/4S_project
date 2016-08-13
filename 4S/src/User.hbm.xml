@@ -11,6 +11,7 @@
         <property name="username" not-null="true" column="username" length="32" type="java.lang.String"/>
         <property name="password" not-null="true" column="password" length="128" type="java.lang.String"/>
         <property name="type" not-null="true" column="type" length="64" type="java.lang.String"/>
+        <property name="valid" column="valid" type="java.lang.String" length="1"/>
         <set name="roleSet" table="user_role">
             <key column="user_id"/>
             <many-to-many column="role_id" class="CarSaleManagerSystem.Bean.Role"/>

@@ -9,6 +9,7 @@
             <key-property name="brand" column="brand" length="64"/>
             <key-property name="garage" column="garage_brand" length="64"/>
         </composite-id>
+        <property name="valid" column="valid" type="java.lang.String" length="1"/>
         <!--<id name="brand" type="java.lang.String" length="64" column="brand">-->
         <!--</id>-->
         <!--<many-to-one name="garage" class="CarSaleManagerSystem.Bean.Garage" outer-join="auto" column="garage_brand" update="true" insert="true" not-null="true">-->

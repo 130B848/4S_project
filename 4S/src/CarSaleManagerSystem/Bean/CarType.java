@@ -24,10 +24,19 @@ public class CarType implements Serializable{
     private float price;
     private float cost;
     private float discount;
+    private String valid;
 
 //    private Set<Car> carSet = new HashSet<>();
 //    private Set<Gift> giftSet = new HashSet<>();
 
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
+    }
 
     public String getBrand() {
         return brand;

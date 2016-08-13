@@ -8,7 +8,16 @@ import java.util.Set;
  */
 public class CarSFX {
     private String sfx;
+    private String valid;
     private Set<CarType> carTypeSet = new HashSet<>();
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
+    }
 
     public String getSfx() {
         return sfx;

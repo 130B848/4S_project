@@ -7,5 +7,6 @@
     <class name="CarSaleManagerSystem.Bean.StockStatus" table="stock_status">
         <id name="state" column="stock_status" type="java.lang.String" length="32">
         </id>
+        <property name="valid" column="valid" type="java.lang.String" length="1"/>
     </class>
 </hibernate-mapping>

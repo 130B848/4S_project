@@ -41,4 +41,11 @@ public class ColorDAO {
         Session session = sessionFactory.getCurrentSession();
         session.update(carColor);
     }
+
+    public CarColor getColorByID(String color){
+        Session session = sessionFactory.getCurrentSession();
+        CarColor carColor = null;
+        carColor = (CarColor)session.get(CarColor.class,color);
+        return carColor;
+    }
 }

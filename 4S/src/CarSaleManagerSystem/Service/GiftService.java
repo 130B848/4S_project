@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,5 +39,22 @@ public class GiftService {
 
     public List<GiftType> getAllGiftTypes(){
         return giftTypeDAO.getAllGiftTypes();
+    }
+
+    public List<Gift> findGiftByOrderId(String orderId){
+        List<Gift> gifts = getAllGifts();
+        if(gifts == null){
+            return null;
+        }
+        List<Gift> result = new ArrayList<>();
+        if(orderId == null){
+            return gifts;
+        }
+        for(int i = 0;i < gifts.size();i++){
+            if(gifts.get(i).getOrder().getOrderID().equals(orderId)){
+                result.add(gifts.get(i));
+            }
+        }
+        return result;
     }
 }

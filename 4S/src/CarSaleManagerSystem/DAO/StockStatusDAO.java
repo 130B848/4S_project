@@ -43,4 +43,11 @@ public class StockStatusDAO {
         Session session = this.sessionFactory.getCurrentSession();
         session.update(stockStatus);
     }
+
+    public StockStatus getStockStatusByID(String stock){
+        Session session = sessionFactory.getCurrentSession();
+        StockStatus stockStatus = null;
+        stockStatus = (StockStatus)session.get(StockStatus.class,stock);
+        return stockStatus;
+    }
 }

@@ -72,13 +72,36 @@ public class CarController {
     }
 
     @RequestMapping(value = "/setCost/{carID}",method = RequestMethod.POST)
-    public ModelAndView setCarCostPage(@PathVariable String carID,@ModelAttribute Car car){
+    public ModelAndView setCarCost(@PathVariable String carID,@ModelAttribute Car car){
         ModelAndView modelAndView = new ModelAndView("redirect:/Car/list");
         Car stockCar = carService.findCarById(carID);
         if(stockCar != null){
             stockCar.setCost(car.getCost());
             stockCar.setPrice(car.getPrice());
             stockCar.setDiscount(car.getDiscount());
+            carService.updateCar(stockCar);
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/setStockStatus/{carID}",method = RequestMethod.GET)
+    public ModelAndView setStockStatusPage(@PathVariable String carID){
+        ModelAndView modelAndView = new ModelAndView("Car/setStockStatus");
+        Car car = carService.findCarById(carID);
+        if(car != null){
+            modelAndView.addObject("car",car);
+            List<?> statusList = carService.getAllStockStatus();
+            modelAndView.addObject("statusList",statusList);
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/setStockStatus/{carID}",method = RequestMethod.POST)
+    public ModelAndView setCarStockStatus(@PathVariable String carID,@ModelAttribute Car car){
+        ModelAndView modelAndView = new ModelAndView("redirect:/Car/list");
+        Car stockCar = carService.findCarById(carID);
+        if(stockCar != null){
+            stockCar.setStockStatus(car.getStockStatus());
             carService.updateCar(stockCar);
         }
         return modelAndView;

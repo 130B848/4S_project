@@ -11,8 +11,19 @@ public class User {
     protected String username;
     protected String password;
     protected String type;
+
+    private String valid;
+
     protected Set<Role> roleSet = new HashSet<Role>();
     protected Set<Order>orderSet = new HashSet<Order>();
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
+    }
 
     public int getUserID() {
         return userID;

@@ -17,6 +17,15 @@ public class Gift {
 //    private CarBrand carBrand = new CarBrand();
     private String garage;
     private String brand;
+    private String valid;
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
+    }
 
     public String getGarage() {
         return garage;

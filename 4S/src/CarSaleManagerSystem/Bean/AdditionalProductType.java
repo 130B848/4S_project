@@ -8,7 +8,16 @@ import java.util.Set;
  */
 public class AdditionalProductType {
     private String type;
+    private String valid;
     private Set<AdditionalProduct> additionalProductSet = new HashSet<>();
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
+    }
 
     public String getType() {
         return type;

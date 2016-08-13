@@ -8,12 +8,21 @@ import java.util.Set;
  */
 public class Garage {
     private String brand;
+    private String valid;
 
     private Set<Car> carSet = new HashSet<>();
 
     private Set<CarBrand> carBrandSet = new HashSet<>();
 
     private Set<CarType> carTypeSet = new HashSet<>();
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
+    }
 
     public String getBrand() {
         return brand;

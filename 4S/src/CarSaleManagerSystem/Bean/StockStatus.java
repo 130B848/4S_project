@@ -9,7 +9,16 @@ import java.util.Set;
 public class StockStatus {
     private String state;
 
-    private Set<Car> carSet = new HashSet<>();
+    private String valid;
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
+    }
+
 
     public String getState() {
         return state;
@@ -19,11 +28,4 @@ public class StockStatus {
         this.state = state;
     }
 
-    public Set<Car> getCarSet() {
-        return carSet;
-    }
-
-    public void setCarSet(Set<Car> carSet) {
-        this.carSet = carSet;
-    }
 }

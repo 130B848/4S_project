@@ -14,6 +14,16 @@ public class Insurance {
     private float actualGetMoney;
     private Order order ;
 
+    private String valid;
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
+    }
+
     private InsuranceType insuranceType = new InsuranceType();
 
     public InsuranceType getInsuranceType() {

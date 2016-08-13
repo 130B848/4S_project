@@ -18,6 +18,7 @@
         <property name="plan" column="plan" type="java.lang.Integer"/>
         <property name="order" column="book" type="java.lang.Integer"/>
         <property name="stock" column="stock" type="java.lang.Integer"/>
+        <property name="valid" column="valid" type="java.lang.String" length="1"/>
         <!--<set name="carSet" table="vehicle" inverse="true">-->
             <!--<key column="carID" not-null="true"/>-->
             <!--<one-to-many class="CarSaleManagerSystem.Bean.Car"/>-->

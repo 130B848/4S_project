@@ -17,6 +17,7 @@
         <property name="selling_price" column="selling_price" type="java.lang.Float" precision="10" scale="2" not-null="false"/>
         <property name="garage" column="garage_brand" type="java.lang.String" length="64"/>
         <property name="brand" column="brand" type="java.lang.String" length="64" update="false" insert="false"/>
+        <property name="valid" column="valid" type="java.lang.String" length="1"/>
         <many-to-one name="order" class="CarSaleManagerSystem.Bean.Order" cascade="none"
                      outer-join="auto"
                      update="true"

@@ -21,6 +21,15 @@ public class Customer {
     private int years;//yong che nian xian
     private String source;
     private Date birthday;
+    private String valid;
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
+    }
 
     public Date getBirthday() {
         return birthday;

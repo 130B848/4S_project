@@ -11,8 +11,17 @@ public class AdditionalProduct {
     private float selling_price;
     private float discount;
     private float actualGetMoney;
+    private String valid;
     private Order order;
     private AdditionalProductType additionalProductType = new AdditionalProductType();
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
+    }
 
     public int getAdditionalProductID() {
         return additionalProductID;

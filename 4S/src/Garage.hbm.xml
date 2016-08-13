@@ -8,17 +8,17 @@
         <id name="brand" type="java.lang.String" length="64" column="garage_brand">
         </id>
         <property name="valid" column="valid" type="java.lang.String" length="1"/>
-        <set name="carSet" table="vehicle" inverse="true">
-            <key column="garage_brand" not-null="true"/>
-            <one-to-many class="CarSaleManagerSystem.Bean.Car"/>
-        </set>
-        <set name="carBrandSet" table="brand" inverse="true">
-            <key column="garage_brand" not-null="true"/>
-            <one-to-many class="CarSaleManagerSystem.Bean.CarBrand"/>
-        </set>
-        <set name="carTypeSet" table="vehicle_type" inverse="true">
-            <key column="garage_brand" not-null="true"/>
-            <one-to-many class="CarSaleManagerSystem.Bean.CarType"/>
-        </set>
+        <!--<set name="carSet" table="vehicle" inverse="true">-->
+            <!--<key column="garage_brand" not-null="true"/>-->
+            <!--<one-to-many class="CarSaleManagerSystem.Bean.Car"/>-->
+        <!--</set>-->
+        <!--<set name="carBrandSet" table="brand" inverse="true">-->
+            <!--<key column="garage_brand" not-null="true"/>-->
+            <!--<one-to-many class="CarSaleManagerSystem.Bean.CarBrand"/>-->
+        <!--</set>-->
+        <!--<set name="carTypeSet" table="vehicle_type" inverse="true">-->
+            <!--<key column="garage_brand" not-null="true"/>-->
+            <!--<one-to-many class="CarSaleManagerSystem.Bean.CarType"/>-->
+        <!--</set>-->
     </class>
 </hibernate-mapping>

@@ -9,9 +9,9 @@
             <generator class="increment"/>
         </id>
         <property name="rolename" type="java.lang.String" column="role_name"/>
-        <set name="userSet" table="user_role" inverse="true">
-            <key column="role_id"/>
-            <many-to-many class="CarSaleManagerSystem.Bean.User" column="user_id"/>
-        </set>
+        <!--<set name="userSet" table="user_role" inverse="true">-->
+            <!--<key column="role_id"/>-->
+            <!--<many-to-many class="CarSaleManagerSystem.Bean.User" column="user_id"/>-->
+        <!--</set>-->
     </class>
 </hibernate-mapping>

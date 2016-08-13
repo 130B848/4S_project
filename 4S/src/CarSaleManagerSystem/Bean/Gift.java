@@ -12,84 +12,12 @@ public class Gift {
     private float selling_price;
     private float discount;
     private float actualGetMoney;
-    private Order order;
-    private GiftType giftType = new GiftType();
+    private String orderID;
+    private String giftType;
 //    private CarBrand carBrand = new CarBrand();
     private String garage;
     private String brand;
     private String valid;
-
-    public String getValid() {
-        return valid;
-    }
-
-    public void setValid(String valid) {
-        this.valid = valid;
-    }
-
-    public String getGarage() {
-        return garage;
-    }
-
-    public void setGarage(String garage) {
-        this.garage = garage;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public GiftType getGiftType() {
-        return giftType;
-    }
-
-    public void setGiftType(GiftType giftType) {
-        this.giftType = giftType;
-    }
-
-    public float getActualGetMoney() {
-        return actualGetMoney;
-    }
-
-    public void setActualGetMoney(float actualGetMoney) {
-        this.actualGetMoney = actualGetMoney;
-    }
-
-//    public CarBrand getCarBrand() {
-//        return carBrand;
-//    }
-//
-//    public void setCarBrand(CarBrand carBrand) {
-//        this.carBrand = carBrand;
-//    }
-
-//    public String getBrand() {
-//        return carBrand.getBrand();
-//    }
-//
-//    public void setBrand(String brand) {
-//        this.carBrand.setBrand(brand);
-//    }
-
-    public float getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(float discount) {
-        this.discount = discount;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
 
     public int getGiftID() {
         return giftID;
@@ -105,14 +33,6 @@ public class Gift {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getType() {
-        return giftType.getType();
-    }
-
-    public void setType(String type) {
-        this.giftType.setType(type);
     }
 
     public float getCost() {
@@ -137,5 +57,61 @@ public class Gift {
 
     public void setSelling_price(float selling_price) {
         this.selling_price = selling_price;
+    }
+
+    public float getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(float discount) {
+        this.discount = discount;
+    }
+
+    public float getActualGetMoney() {
+        return actualGetMoney;
+    }
+
+    public void setActualGetMoney(float actualGetMoney) {
+        this.actualGetMoney = actualGetMoney;
+    }
+
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
+    }
+
+    public String getGiftType() {
+        return giftType;
+    }
+
+    public void setGiftType(String giftType) {
+        this.giftType = giftType;
+    }
+
+    public String getGarage() {
+        return garage;
+    }
+
+    public void setGarage(String garage) {
+        this.garage = garage;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
     }
 }

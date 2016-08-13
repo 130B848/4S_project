@@ -9,15 +9,19 @@
         <!--</id>-->
         <composite-id>
             <key-property name="brand" type="java.lang.String" length="64" column="brand"/>
-            <key-many-to-one name="garage" class="CarSaleManagerSystem.Bean.Garage" column="garage_brand"/>
-            <key-many-to-one name="carColor" class="CarSaleManagerSystem.Bean.CarColor" column="color"/>
-            <key-many-to-one name="carSfx" class="CarSaleManagerSystem.Bean.CarSFX" column="sfx"/>
+            <key-property name="garage" type="java.lang.String" column="garage_brand"/>
+            <key-property name="carColor" type="java.lang.String" column="color"/>
+            <key-property name="carSfx" type="java.lang.String" column="sfx"/>
+            <!--<key-many-to-one name="garage" class="CarSaleManagerSystem.Bean.Garage" column="garage_brand"/>-->
+            <!--<key-many-to-one name="carColor" class="CarSaleManagerSystem.Bean.CarColor" column="color"/>-->
+            <!--<key-many-to-one name="carSfx" class="CarSaleManagerSystem.Bean.CarSFX" column="sfx"/>-->
         </composite-id>
         <property name="cost" column="cost" type="java.lang.Float" precision="10" scale="2"/>
         <property name="price" column="price" type="java.lang.Float" precision="10" scale="2"/>
         <property name="plan" column="plan" type="java.lang.Integer"/>
         <property name="order" column="book" type="java.lang.Integer"/>
         <property name="stock" column="stock" type="java.lang.Integer"/>
+        <property name="requestNumber" column="request_number" type="java.lang.Integer"/>
         <property name="valid" column="valid" type="java.lang.String" length="1"/>
         <!--<set name="carSet" table="vehicle" inverse="true">-->
             <!--<key column="carID" not-null="true"/>-->

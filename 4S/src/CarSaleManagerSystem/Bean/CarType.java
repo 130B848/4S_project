@@ -9,9 +9,9 @@ public class CarType implements Serializable{
 
 
 //    private CarBrand carBrand = new CarBrand();
-    private CarColor carColor = new CarColor();
-    private CarSFX carSfx = new CarSFX();
-    private Garage garage = new Garage();
+    private String carColor;
+    private String carSfx;
+    private String garage;
 
     private String brand;
 //    private String color;
@@ -26,16 +26,42 @@ public class CarType implements Serializable{
     private float discount;
     private String valid;
 
+    private int requestNumber;
+
 //    private Set<Car> carSet = new HashSet<>();
 //    private Set<Gift> giftSet = new HashSet<>();
 
 
-    public String getValid() {
-        return valid;
+    public int getRequestNumber() {
+        return requestNumber;
     }
 
-    public void setValid(String valid) {
-        this.valid = valid;
+    public void setRequestNumber(int requestNumber) {
+        this.requestNumber = requestNumber;
+    }
+
+    public String getCarColor() {
+        return carColor;
+    }
+
+    public void setCarColor(String carColor) {
+        this.carColor = carColor;
+    }
+
+    public String getCarSfx() {
+        return carSfx;
+    }
+
+    public void setCarSfx(String carSfx) {
+        this.carSfx = carSfx;
+    }
+
+    public String getGarage() {
+        return garage;
+    }
+
+    public void setGarage(String garage) {
+        this.garage = garage;
     }
 
     public String getBrand() {
@@ -45,71 +71,6 @@ public class CarType implements Serializable{
     public void setBrand(String brand) {
         this.brand = brand;
     }
-
-    public String getSfx() {
-        return carSfx.getSfx();
-    }
-
-    public void setSfx(String carSfx) {
-        this.carSfx.setSfx(carSfx);
-    }
-
-    public String getColor(){
-        return carColor.getColor();
-    }
-
-    public void setColor(String color){
-        this.carColor.setColor(color);
-    }
-
-    public CarColor getCarColor() {
-        return carColor;
-    }
-
-    public void setCarColor(CarColor carColor) {
-        this.carColor = carColor;
-    }
-
-    public CarSFX getCarSfx() {
-        return carSfx;
-    }
-
-    public void setCarSfx(CarSFX carSfx) {
-        this.carSfx = carSfx;
-    }
-
-//    public Set<Gift> getGiftSet() {
-//        return giftSet;
-//    }
-//
-//    public void setGiftSet(Set<Gift> giftSet) {
-//        this.giftSet = giftSet;
-//    }
-
-    public String getGarageBrand(){
-        return garage.getBrand();
-    }
-
-    public void setGarageBrand(String brand){
-        this.garage.setBrand(brand);
-    }
-
-
-    public Garage getGarage() {
-        return garage;
-    }
-
-    public void setGarage(Garage garage) {
-        this.garage = garage;
-    }
-
-//    public Set<Car> getCarSet() {
-//        return carSet;
-//    }
-
-//    public void setCarSet(Set<Car> carSet) {
-//        this.carSet = carSet;
-//    }
 
     public int getPlan() {
         return plan;
@@ -157,6 +118,14 @@ public class CarType implements Serializable{
 
     public void setDiscount(float discount) {
         this.discount = discount;
+    }
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
     }
 
     @Override

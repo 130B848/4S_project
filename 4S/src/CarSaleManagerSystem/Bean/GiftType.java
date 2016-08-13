@@ -9,7 +9,7 @@ import java.util.Set;
 public class GiftType {
     private String type;
     private String valid;
-    private Set<Gift> giftSet = new HashSet<>();
+//    private Set<Gift> giftSet = new HashSet<>();
 
     public String getValid() {
         return valid;
@@ -27,11 +27,11 @@ public class GiftType {
         this.type = type;
     }
 
-    public Set<Gift> getGiftSet() {
-        return giftSet;
-    }
-
-    public void setGiftSet(Set<Gift> giftSet) {
-        this.giftSet = giftSet;
-    }
+//    public Set<Gift> getGiftSet() {
+//        return giftSet;
+//    }
+//
+//    public void setGiftSet(Set<Gift> giftSet) {
+//        this.giftSet = giftSet;
+//    }
 }

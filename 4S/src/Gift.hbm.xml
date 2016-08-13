@@ -18,16 +18,18 @@
         <property name="garage" column="garage_brand" type="java.lang.String" length="64"/>
         <property name="brand" column="brand" type="java.lang.String" length="64" update="false" insert="false"/>
         <property name="valid" column="valid" type="java.lang.String" length="1"/>
-        <many-to-one name="order" class="CarSaleManagerSystem.Bean.Order" cascade="none"
-                     outer-join="auto"
-                     update="true"
-                     insert="true"
-                     lazy="false"
-                     column="order_id"
-                     not-null="false"/>
+        <property name="orderID" column="order_id" type="java.lang.String" length="64"/>
+        <property name="giftType" column="type" type="java.lang.String" length="64"/>
+        <!--<many-to-one name="order" class="CarSaleManagerSystem.Bean.Order" cascade="none"-->
+                     <!--outer-join="auto"-->
+                     <!--update="true"-->
+                     <!--insert="true"-->
+                     <!--lazy="false"-->
+                     <!--column="order_id"-->
+                     <!--not-null="false"/>-->
         <!--<many-to-one name="carBrand" class="CarSaleManagerSystem.Bean.CarBrand" outer-join="auto" update="true" insert="true" not-null="true">-->
         <!--</many-to-one>-->
-        <many-to-one name="giftType" class="CarSaleManagerSystem.Bean.GiftType" outer-join="auto" column="type" update="true" insert="true" not-null="true">
-        </many-to-one>
+        <!--<many-to-one name="giftType" class="CarSaleManagerSystem.Bean.GiftType" outer-join="auto" column="type" update="true" insert="true" not-null="true">-->
+        <!--</many-to-one>-->
     </class>
 </hibernate-mapping>

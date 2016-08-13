@@ -9,7 +9,7 @@ import java.util.Set;
 public class CarSFX {
     private String sfx;
     private String valid;
-    private Set<CarType> carTypeSet = new HashSet<>();
+//    private Set<CarType> carTypeSet = new HashSet<>();
 
     public String getValid() {
         return valid;
@@ -27,13 +27,13 @@ public class CarSFX {
         this.sfx = sfx;
     }
 
-    public Set<CarType> getCarTypeSet() {
-        return carTypeSet;
-    }
-
-    public void setCarTypeSet(Set<CarType> carTypeSet) {
-        this.carTypeSet = carTypeSet;
-    }
+//    public Set<CarType> getCarTypeSet() {
+//        return carTypeSet;
+//    }
+//
+//    public void setCarTypeSet(Set<CarType> carTypeSet) {
+//        this.carTypeSet = carTypeSet;
+//    }
 
     @Override
     public boolean equals(Object o) {

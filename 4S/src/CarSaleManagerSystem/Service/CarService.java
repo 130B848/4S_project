@@ -46,6 +46,7 @@ public class CarService {
             carDAO.updateCar(car);
             return;
         }
+        car.setValid("Y");
         carDAO.createCar(car);
     }
 
@@ -89,6 +90,7 @@ public class CarService {
             garageDAO.updateGarage(garage);
             return;
         }
+        garage.setValid("Y");
         garageDAO.createGarage(garage);
     }
 
@@ -110,6 +112,7 @@ public class CarService {
                 }
             }
         }
+        carBrand.setValid("Y");
         carBrandDAO.createCarBrand(carBrand);
     }
 
@@ -126,6 +129,7 @@ public class CarService {
             colorDAO.updateColor(carColor);
             return;
         }
+        carColor.setValid("Y");
         colorDAO.createColor(carColor);
     }
 
@@ -142,6 +146,7 @@ public class CarService {
             stockStatusDAO.updateStockStatus(stockStatus);
             return;
         }
+        stockStatus.setValid("Y");
         stockStatusDAO.createStockStatus(stockStatus);
     }
 
@@ -158,6 +163,7 @@ public class CarService {
             sfxdao.updateCarSFX(carSFX);
             return;
         }
+        carSFX.setValid("Y");
         sfxdao.createCarSFX(carSFX);
     }
 
@@ -166,7 +172,7 @@ public class CarService {
     }
 
     public void createCarType(CarType carType){
-        CarTypeID carTypeID = new CarTypeID(carType.getGarageBrand(),carType.getBrand(),carType.getSfx(),carType.getColor());
+        CarTypeID carTypeID = new CarTypeID(carType.getGarage(),carType.getBrand(),carType.getCarSfx(),carType.getCarColor());
         if(carTypeExist(carTypeID)){
             return;
         }
@@ -175,13 +181,14 @@ public class CarService {
             carTypeDAO.updateCarType(carType);
             return;
         }
+        carType.setValid("Y");
         carTypeDAO.createCarType(carType);
     }
 
     public List<CarType> getAllCarType(){return carTypeDAO.getAllCarType();}
 
     public void removeCarType(CarType carType){
-        CarTypeID carTypeID = new CarTypeID(carType.getGarageBrand(),carType.getBrand(),carType.getSfx(),carType.getColor());
+        CarTypeID carTypeID = new CarTypeID(carType.getGarage(),carType.getBrand(),carType.getCarSfx(),carType.getCarColor());
         if(carTypeExist(carTypeID)){
             carType.setValid("N");
             carTypeDAO.updateCarType(carType);
@@ -208,7 +215,7 @@ public class CarService {
             return null;
         }
         for(int i = 0;i < carTypeList.size();i++){
-            if(carTypeList.get(i).getGarageBrand().equals(garage)){
+            if(carTypeList.get(i).getGarage().equals(garage)){
                 result.add(carTypeList.get(i));
             }
         }
@@ -240,7 +247,7 @@ public class CarService {
             return null;
         }
         for(int i = 0;i < carTypeList.size();i++){
-            if(carTypeList.get(i).getSfx().equals(sfx)){
+            if(carTypeList.get(i).getCarSfx().equals(sfx)){
                 result.add(carTypeList.get(i));
             }
         }
@@ -256,7 +263,7 @@ public class CarService {
             return null;
         }
         for(int i = 0;i < carTypeList.size();i++){
-            if(carTypeList.get(i).getColor().equals(carColor)){
+            if(carTypeList.get(i).getCarColor().equals(carColor)){
                 result.add(carTypeList.get(i));
             }
         }

@@ -8,9 +8,9 @@
         <id name="color" column="color" type="java.lang.String" length="32">
         </id>
         <property name="valid" column="valid" type="java.lang.String" length="1"/>
-        <set name="carTypeSet" table="vehicle_type" inverse="true">
-            <key column="color" not-null="true"/>
-            <one-to-many class="CarSaleManagerSystem.Bean.CarType"/>
-        </set>
+        <!--<set name="carTypeSet" table="vehicle_type" inverse="true">-->
+            <!--<key column="color" not-null="true"/>-->
+            <!--<one-to-many class="CarSaleManagerSystem.Bean.CarType"/>-->
+        <!--</set>-->
     </class>
 </hibernate-mapping>

@@ -17,7 +17,6 @@ public class OrderService {
     @Autowired
     private OrderDAO orderDAO;
 
-
     public void createOrder(Order order){
         orderDAO.createOrder(order);
     }
@@ -45,4 +44,5 @@ public class OrderService {
     public Order findOrderByCar(String carID){
         return orderDAO.findOrderByCar(carID);
     }
+
 }

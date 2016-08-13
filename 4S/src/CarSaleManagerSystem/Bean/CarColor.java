@@ -19,7 +19,7 @@ public class CarColor {
         this.valid = valid;
     }
 
-    private Set<CarType> carTypeSet = new HashSet<>();
+//    private Set<CarType> carTypeSet = new HashSet<>();
 
     public String getColor() {
         return color;
@@ -29,13 +29,13 @@ public class CarColor {
         this.color = color;
     }
 
-    public Set<CarType> getCarTypeSet() {
-        return carTypeSet;
-    }
-
-    public void setCarTypeSet(Set<CarType> carTypeSet) {
-        this.carTypeSet = carTypeSet;
-    }
+//    public Set<CarType> getCarTypeSet() {
+//        return carTypeSet;
+//    }
+//
+//    public void setCarTypeSet(Set<CarType> carTypeSet) {
+//        this.carTypeSet = carTypeSet;
+//    }
 
     @Override
     public boolean equals(Object o) {

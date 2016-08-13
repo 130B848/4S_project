@@ -18,6 +18,15 @@ public class UserService {
     private UserDAO userDAO;
 
     public void createUser(User user){
+        if(userExist(user.getUserID())){
+            return;
+        }
+        if(userDAO.findUserById(user.getUserID()) != null){
+            user.setValid("Y");
+            userDAO.updateUser(user);
+            return;
+        }
+        user.setValid("Y");
         userDAO.createUser(user);
     }
 
@@ -37,6 +46,16 @@ public class UserService {
         return userDAO.findUserById(userID);
     }
 
+    public boolean userExist(int userID){
+        User user = userDAO.findUserById(userID);
+        if(user == null){
+            return false;
+        }
+        if(user.getValid().equals("N")){
+            return false;
+        }
+        return true;
+    }
     public int login(User user){
         User usr = userDAO.findUserByUsername(user.getUsername());
         if(user.getUsername().equals(usr.getUsername()) && user.getPassword().equals(usr.getPassword()))
@@ -46,8 +65,5 @@ public class UserService {
         return -1;
     }
 
-    public void logout(){
-
-    }
 
 }

@@ -11,7 +11,7 @@ public class InsuranceType {
     private String valid;
 
 
-    private Set<Insurance> insuranceSet = new HashSet<>();
+//    private Set<Insurance> insuranceSet = new HashSet<>();
 
     public String getValid() {
         return valid;
@@ -29,11 +29,11 @@ public class InsuranceType {
         this.type = type;
     }
 
-    public Set<Insurance> getInsuranceSet() {
-        return insuranceSet;
-    }
-
-    public void setInsuranceSet(Set<Insurance> insuranceSet) {
-        this.insuranceSet = insuranceSet;
-    }
+//    public Set<Insurance> getInsuranceSet() {
+//        return insuranceSet;
+//    }
+//
+//    public void setInsuranceSet(Set<Insurance> insuranceSet) {
+//        this.insuranceSet = insuranceSet;
+//    }
 }

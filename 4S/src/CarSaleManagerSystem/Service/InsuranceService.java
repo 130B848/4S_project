@@ -22,21 +22,71 @@ public class InsuranceService {
     @Autowired
     private InsuranceTypeDAO insuranceTypeDAO;
 
-    public void createInsurance(Insurance insurance){insuranceDAO.createInsurance(insurance);}
+    public void createInsurance(Insurance insurance){
+        if(insuranceExist(insurance.getInsuranceID())){
+            return;
+        }
+        if(insuranceDAO.findInsuranceById(insurance.getInsuranceID()) != null){
+            insurance.setValid("Y");
+            insuranceDAO.updateInsurance(insurance);
+            return;
+        }
+        insurance.setValid("Y");
+        insuranceDAO.createInsurance(insurance);
+    }
 
-    public List<Insurance> getAllInsurance(){return insuranceDAO.getAllInsurances();}
+    public List<Insurance> getAllInsurance(){
+        return insuranceDAO.getAllInsurances();
+    }
 
-    public void removeInsurance(Insurance insurance){insuranceDAO.removeInsurance(insurance);}
+    public void removeInsurance(Insurance insurance){
+        if(insuranceExist(insurance.getInsuranceID())){
+            insurance.setValid("N");
+            insuranceDAO.updateInsurance(insurance);
+        }
+//        insuranceDAO.removeInsurance(insurance);
+    }
 
     public void updateInsurance(Insurance insurance){insuranceDAO.updateInsurance(insurance);}
 
     public Insurance findInsuranceById(int insuranceID){return insuranceDAO.findInsuranceById(insuranceID);}
 
     public void createInsuranceType(InsuranceType insuranceType){
+        if(insuranceTypeExist(insuranceType.getType())){
+            return;
+        }
+        if(insuranceTypeDAO.findInsuranceTypeById(insuranceType.getType()) != null){
+            insuranceType.setValid("Y");
+            insuranceTypeDAO.updateInsuranceType(insuranceType);
+            return;
+        }
+        insuranceType.setValid("Y");
         insuranceTypeDAO.createInsuranceType(insuranceType);
     }
 
     public List<InsuranceType> getAllInsuranceType(){
         return insuranceTypeDAO.getAllInsuranceTypes();
+    }
+
+    public boolean insuranceExist(int insuranceID){
+        Insurance insurance = insuranceDAO.findInsuranceById(insuranceID);
+        if(insurance == null){
+            return false;
+        }
+        if(insurance.getValid().equals("N")){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean insuranceTypeExist(String type){
+        InsuranceType insuranceType = insuranceTypeDAO.findInsuranceTypeById(type);
+        if(insuranceType == null){
+            return false;
+        }
+        if(insuranceType.getValid().equals("N")){
+            return false;
+        }
+        return true;
     }
 }

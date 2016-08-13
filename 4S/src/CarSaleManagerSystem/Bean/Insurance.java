@@ -6,57 +6,15 @@ package CarSaleManagerSystem.Bean;
 public class Insurance {
     private int insuranceID;
     private String name;
-//    private String type;
+    private String type;
     private float cost;
     private float default_price;
     private float selling_price;
     private float discount;
     private float actualGetMoney;
-    private Order order ;
+    private String orderID ;
 
     private String valid;
-
-    public String getValid() {
-        return valid;
-    }
-
-    public void setValid(String valid) {
-        this.valid = valid;
-    }
-
-    private InsuranceType insuranceType = new InsuranceType();
-
-    public InsuranceType getInsuranceType() {
-        return insuranceType;
-    }
-
-    public void setInsuranceType(InsuranceType insuranceType) {
-        this.insuranceType = insuranceType;
-    }
-
-    public float getActualGetMoney() {
-        return actualGetMoney;
-    }
-
-    public void setActualGetMoney(float actualGetMoney) {
-        this.actualGetMoney = actualGetMoney;
-    }
-
-    public float getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(float discount) {
-        this.discount = discount;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
 
     public int getInsuranceID() {
         return insuranceID;
@@ -75,11 +33,11 @@ public class Insurance {
     }
 
     public String getType() {
-        return insuranceType.getType();
+        return type;
     }
 
     public void setType(String type) {
-        this.insuranceType.setType(type);
+        this.type = type;
     }
 
     public float getCost() {
@@ -104,5 +62,37 @@ public class Insurance {
 
     public void setSelling_price(float selling_price) {
         this.selling_price = selling_price;
+    }
+
+    public float getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(float discount) {
+        this.discount = discount;
+    }
+
+    public float getActualGetMoney() {
+        return actualGetMoney;
+    }
+
+    public void setActualGetMoney(float actualGetMoney) {
+        this.actualGetMoney = actualGetMoney;
+    }
+
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
+    }
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
     }
 }

@@ -18,9 +18,17 @@ public class Car {
     private float price;
     private float discount;
     private String normal;
-
+    private float payback;
     private String stockStatus;
     private String valid;
+
+    public float getPayback() {
+        return payback;
+    }
+
+    public void setPayback(float payback) {
+        this.payback = payback;
+    }
 
     public String getCarNumber() {
         return carNumber;

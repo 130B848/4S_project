@@ -47,7 +47,7 @@ public class InsuranceTypeDAO {
         session.flush();
     }
 
-    public InsuranceType findInsuranceTypeById(int insuranceTypeID){
+    public InsuranceType findInsuranceTypeById(String insuranceTypeID){
         Session session = this.sessionFactory.getCurrentSession();
 
         InsuranceType insuranceType = (InsuranceType)session.get(InsuranceType.class, insuranceTypeID);

@@ -14,8 +14,8 @@ public class User {
 
     private String valid;
 
-    protected Set<Role> roleSet = new HashSet<Role>();
-    protected Set<Order>orderSet = new HashSet<Order>();
+//    protected Set<Role> roleSet = new HashSet<Role>();
+//    protected Set<Order>orderSet = new HashSet<Order>();
 
     public String getValid() {
         return valid;
@@ -57,19 +57,19 @@ public class User {
         this.type = type;
     }
 
-    public Set<Role> getRoleSet() {
-        return roleSet;
-    }
-
-    public void setRoleSet(Set<Role> roleSet) {
-        this.roleSet = roleSet;
-    }
-
-    public Set<Order> getOrderSet() {
-        return orderSet;
-    }
-
-    public void setOrderSet(Set<Order> orderSet) {
-        this.orderSet = orderSet;
-    }
+//    public Set<Role> getRoleSet() {
+//        return roleSet;
+//    }
+//
+//    public void setRoleSet(Set<Role> roleSet) {
+//        this.roleSet = roleSet;
+//    }
+//
+//    public Set<Order> getOrderSet() {
+//        return orderSet;
+//    }
+//
+//    public void setOrderSet(Set<Order> orderSet) {
+//        this.orderSet = orderSet;
+//    }
 }

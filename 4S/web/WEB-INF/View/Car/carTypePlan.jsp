@@ -23,7 +23,7 @@
         <label class="col-sm-2 control-label">厂家:</label>
         <div class="col-sm-7">
             <select class="form-control" name="garageBrand" id="GarageBrand">
-                    <option value="${carType.garage.brand}">${carType.garage.brand}</option>
+                    <option value="${carType.garage}">${carType.garage}</option>
             </select>
         </div>
     </div>
@@ -41,7 +41,7 @@
         <label class="col-sm-2 control-label">SFX:</label>
         <div class="col-sm-7">
             <select class="form-control" name="Sfx" id="Sfx">
-                    <option value="${carType.carSfx.sfx}">${carType.carSfx.sfx}</option>
+                    <option value="${carType.carSfx}">${carType.carSfx}</option>
             </select>
 
         </div>
@@ -51,7 +51,7 @@
         <label class="col-sm-2 control-label">颜色:</label>
         <div class="col-sm-7">
             <select class="form-control" name="Color" id="Color">
-                    <option value="${carType.carColor.color}">${carType.carColor.color}</option>
+                    <option value="${carType.carColor}">${carType.carColor}</option>
             </select>
                 <%--<input class="form-control" type="text" placeholder="颜色"--%>
                 <%--id="CarColor" name="carColor" required="required"/>--%>

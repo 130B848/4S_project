@@ -22,8 +22,8 @@
 
     <div class="form-group">
         <label class="col-sm-2 control-label">厂家:</label>
-        <div class="col-sm-7" id = "garage">
-            <select class="form-control" name="GarageBrand" id="GarageBrand" onchange="brandSelect()">
+        <div class="col-sm-7" id ="garage_div">
+            <select class="form-control" name="Garage" id="Garage" onchange="brandSelect()">
                 <%--<option value="posche" onclick="brandSelect">保时捷</option>--%>
                 <%--<option value="BMW" onclick="brandSelect">宝马</option>--%>
                 <c:forEach items="${garages}" var="garage">
@@ -49,7 +49,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">SFX:</label>
         <div class="col-sm-7">
-            <select class="form-control" name="sfx" id="sfx">
+            <select class="form-control" name="carSfx" id="carSfx">
                 <c:forEach items="${sfxes}" var="sfx">
                     <option value="${sfx.sfx}">${sfx.sfx}</option>
                 </c:forEach>
@@ -60,7 +60,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">颜色:</label>
         <div class="col-sm-7">
-            <select class="form-control" name="color" id="Color">
+            <select class="form-control" name="carColor" id="carColor">
                 <c:forEach items="${colors}" var="color">
                     <option value="${color.color}">${color.color}</option>
                 </c:forEach>
@@ -86,7 +86,7 @@
 
     function brandSelect() {
 
-        var obj = document.getElementById("GarageBrand");
+        var obj = document.getElementById("Garage");
         var index = obj.selectedIndex; // 选中索引
         var value = obj.options[index].value; // 选中值
         $.ajax({

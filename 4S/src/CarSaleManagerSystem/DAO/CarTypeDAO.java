@@ -32,7 +32,9 @@ public class CarTypeDAO {
         Session session = this.sessionFactory.getCurrentSession();
 
         String hql = "from CarType";
+        System.out.print(hql);
         List<CarType> carTypes = session.createQuery(hql).list();
+        System.out.println(hql);
         return carTypes;
     }
 

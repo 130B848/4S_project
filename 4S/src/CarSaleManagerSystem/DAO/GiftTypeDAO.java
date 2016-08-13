@@ -49,10 +49,10 @@ public class GiftTypeDAO {
         session.flush();
     }
 
-    public GiftType findGiftTypeById(int giftTypeID){
+    public GiftType findGiftTypeById(String type){
         Session session = this.sessionFactory.getCurrentSession();
 
-        GiftType giftType = (GiftType)session.get(GiftType.class, giftTypeID);
+        GiftType giftType = (GiftType)session.get(GiftType.class, type);
         return giftType;
     }
 }

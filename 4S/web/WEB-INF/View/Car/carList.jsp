@@ -30,6 +30,7 @@
         <th>成本</th>
         <th>指导价</th>
         <th>折扣</th>
+        <th>返利</th>
         <th>车龄</th>
         <th colspan=3>操作</th>
       </tr>
@@ -47,6 +48,7 @@
           <td>${car.key.cost}</td>
           <td>${car.key.price}</td>
           <td>${car.key.discount}</td>
+          <td>${car.key.payback}</td>
           <td>${car.value}</td>
           <td><button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Order/addCarToOrder/${car.key.carID}'">购买</button></td>
           <td><button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Car/setCost/${car.key.carID}'">设置成本</button></td>

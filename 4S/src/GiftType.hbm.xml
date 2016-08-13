@@ -8,9 +8,9 @@
         <id name="type" column="type" type="java.lang.String" length="64">
         </id>
         <property name="valid" column="valid" type="java.lang.String" length="1"/>
-        <set name="giftSet" table="gift" inverse="true">
-            <key column="type" not-null="true"/>
-            <one-to-many class="CarSaleManagerSystem.Bean.Gift"/>
-        </set>
+        <!--<set name="giftSet" table="gift" inverse="true">-->
+            <!--<key column="type" not-null="true"/>-->
+            <!--<one-to-many class="CarSaleManagerSystem.Bean.Gift"/>-->
+        <!--</set>-->
     </class>
 </hibernate-mapping>

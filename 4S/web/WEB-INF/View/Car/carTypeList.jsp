@@ -30,15 +30,15 @@
             <tbody>
             <c:forEach items="${carTypes}" var="carType">
                 <tr>
-                    <td>${carType.garage.brand}</td>
+                    <td>${carType.garage}</td>
                     <td>${carType.brand}</td>
-                    <td>${carType.carSfx.sfx}</td>
-                    <td>${carType.carColor.color}</td>
+                    <td>${carType.carSfx}</td>
+                    <td>${carType.carColor}</td>
 
-                    <td><button type="button" class="btn btn-primary" onclick="deleteCarType('${carType.garage.brand}','${carType.brand}','${carType.carSfx.sfx}','${carType.carColor.color}')">删除</button></td>
-                    <td><button type="button" class="btn btn-primary" onclick="updatePlan('${carType.garage.brand}','${carType.brand}','${carType.carSfx.sfx}','${carType.carColor.color}')">添加计划</button></td>
+                    <td><button type="button" class="btn btn-primary" onclick="deleteCarType('${carType.garage}','${carType.brand}','${carType.carSfx}','${carType.carColor}')">删除</button></td>
+                    <td><button type="button" class="btn btn-primary" onclick="updatePlan('${carType.garage}','${carType.brand}','${carType.carSfx}','${carType.carColor}')">添加计划</button></td>
                     <td><button type="button" class="btn btn-primary" onclick="window.location='#'">设置价格</button></td>
-                    <td><button type="button" class="btn btn-primary" onclick="getStock('${carType.garage.brand}','${carType.brand}','${carType.carSfx.sfx}','${carType.carColor.color}')">查看库存</button></td>
+                    <td><button type="button" class="btn btn-primary" onclick="getStock('${carType.garage}','${carType.brand}','${carType.carSfx}','${carType.carColor}')">查看库存</button></td>
                     <td><button type="button" class="btn btn-primary" onclick="window.location='#'">向厂家订车请求</button></td>
                 </tr>
             </c:forEach>

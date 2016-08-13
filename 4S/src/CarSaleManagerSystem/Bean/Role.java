@@ -9,7 +9,7 @@ import java.util.Set;
 public class Role {
     private int roleID;
     private String rolename;
-    private Set<User> userSet = new HashSet<>();
+//    private Set<User> userSet = new HashSet<>();
 
     public int getRoleID() {
         return roleID;
@@ -27,11 +27,11 @@ public class Role {
         this.rolename = rolename;
     }
 
-    public Set<User> getUserSet() {
-        return userSet;
-    }
-
-    public void setUserSet(Set<User> userSet) {
-        this.userSet = userSet;
-    }
+//    public Set<User> getUserSet() {
+//        return userSet;
+//    }
+//
+//    public void setUserSet(Set<User> userSet) {
+//        this.userSet = userSet;
+//    }
 }

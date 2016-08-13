@@ -39,7 +39,7 @@
                     <td><button type="button" class="btn btn-primary" onclick="updatePlan('${carType.garage}','${carType.brand}','${carType.carSfx}','${carType.carColor}')">添加计划</button></td>
                     <td><button type="button" class="btn btn-primary" onclick="window.location='#'">设置价格</button></td>
                     <td><button type="button" class="btn btn-primary" onclick="getStock('${carType.garage}','${carType.brand}','${carType.carSfx}','${carType.carColor}')">查看库存</button></td>
-                    <td><button type="button" class="btn btn-primary" onclick="window.location='#'">向厂家订车请求</button></td>
+                    <td><button type="button" class="btn btn-primary" onclick="stockRegister('${carType.garage}','${carType.brand}','${carType.carSfx}','${carType.carColor}')">向厂家订车请求</button></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -61,6 +61,11 @@
         document.body.appendChild(temp);
         temp.submit();
         return temp;
+    };
+
+    function stockRegister(garage,brand,sfx,color){
+        var data = {"garage":garage, "brand":brand,"sfx":sfx,"color":color};
+        post("${pageContext.request.contextPath}/Car/createCarByCarType", data);
     };
 
     function updatePlan(garage,brand,sfx,color) {

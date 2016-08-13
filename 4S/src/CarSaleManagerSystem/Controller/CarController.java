@@ -79,6 +79,7 @@ public class CarController {
             stockCar.setCost(car.getCost());
             stockCar.setPrice(car.getPrice());
             stockCar.setDiscount(car.getDiscount());
+            stockCar.setPayback(car.getPayback());
             carService.updateCar(stockCar);
         }
         return modelAndView;
@@ -179,6 +180,22 @@ public class CarController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/createCarByCarType",method = RequestMethod.POST)
+    public ModelAndView createCarByCarType(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView("Car/carTypeCreateStock");
+        String garage = request.getParameter("garage");
+        String brand = request.getParameter("brand");
+        String color = request.getParameter("color");
+        String sfx = request.getParameter("sfx");
+        List<?> statusList = carService.getAllStockStatus();
+        modelAndView.addObject("garage",garage);
+        modelAndView.addObject("brand",brand);
+        modelAndView.addObject("color",color);
+        modelAndView.addObject("sfx",sfx);
+        modelAndView.addObject("statusList",statusList);
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/carListByCarType",method = RequestMethod.POST)
     public ModelAndView carListByCarType(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("Car/carList");
@@ -271,6 +288,7 @@ public class CarController {
         }
         return map;
     }
+
 
 
 

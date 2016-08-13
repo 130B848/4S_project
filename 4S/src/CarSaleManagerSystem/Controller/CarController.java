@@ -62,9 +62,9 @@ public class CarController {
     }
 
     @RequestMapping(value = "/setCost/{carID}",method = RequestMethod.GET)
-    public ModelAndView setCarCostPage(@PathVariable String carID){
+    public ModelAndView setCarCostPage(@PathVariable String carID,@ModelAttribute Car car){
         ModelAndView modelAndView = new ModelAndView("Car/carSetPrice");
-        Car car = carService.findCarById(carID);
+        car = carService.findCarById(carID);
         if(car != null){
             modelAndView.addObject("car",car);
         }
@@ -262,16 +262,27 @@ public class CarController {
     }
 
     @RequestMapping(value = "/updateCarTypePlanPage",method = RequestMethod.POST)
-    public ModelAndView updateCarTypePage(@ModelAttribute CarType carType){
+    public ModelAndView updateCarTypePlanPage(HttpServletRequest request,@ModelAttribute CarType carType){
         ModelAndView modelAndView = new ModelAndView("/Car/carTypePlan");
-
+        String garage = request.getParameter("garage");
+        String brand = request.getParameter("brand");
+        String color = request.getParameter("color");
+        String sfx = request.getParameter("sfx");
+        CarTypeID carTypeID = new CarTypeID(garage,brand,sfx,color);
+        carType = carService.getCarTypeByID(carTypeID);
+        modelAndView.addObject("carType",carType);
         return modelAndView;
     }
 
     @RequestMapping(value = "/updateCarTypePlan",method = RequestMethod.POST)
-    public ModelAndView updateCarType(@ModelAttribute CarType carType){
-        ModelAndView modelAndView = new ModelAndView("/Car/carTypePlan");
-
+    public ModelAndView updateCarPlanType(@ModelAttribute CarType carType){
+        ModelAndView modelAndView = new ModelAndView("redirect:/Car/carTypeList");
+        CarTypeID carTypeID = new CarTypeID(carType.getGarage(),carType.getBrand(),carType.getCarSfx(),carType.getCarColor());
+        CarType stock = carService.getCarTypeByID(carTypeID);
+        if(stock != null){
+            stock.setPlan(carType.getPlan());
+            carService.updateCarType(stock);
+        }
         return modelAndView;
     }
 

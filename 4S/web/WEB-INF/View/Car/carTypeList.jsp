@@ -24,6 +24,13 @@
                 <th>品牌</th>
                 <th>SFX</th>
                 <th>颜色</th>
+                <th>计划</th>
+                <th>订单</th>
+                <th>库存</th>
+                <th>请求订车数</th>
+                <th>成本</th>
+                <th>指导价</th>
+                <th>折让</th>
                 <th colspan=5>操作</th>
             </tr>
             </thead>
@@ -34,6 +41,15 @@
                     <td>${carType.brand}</td>
                     <td>${carType.carSfx}</td>
                     <td>${carType.carColor}</td>
+
+                    <td>${carType.plan}</td>
+                    <td>${carType.order}</td>
+                    <td>${carType.stock}</td>
+                    <td>${carType.requestNumber}</td>
+
+                    <td>${carType.cost}</td>
+                    <td>${carType.price}</td>
+                    <td>${carType.discount}</td>
 
                     <td><button type="button" class="btn btn-primary" onclick="deleteCarType('${carType.garage}','${carType.brand}','${carType.carSfx}','${carType.carColor}')">删除</button></td>
                     <td><button type="button" class="btn btn-primary" onclick="updatePlan('${carType.garage}','${carType.brand}','${carType.carSfx}','${carType.carColor}')">添加计划</button></td>

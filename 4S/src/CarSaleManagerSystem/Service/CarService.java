@@ -41,12 +41,23 @@ public class CarService {
         if(carExist(car.getCarID())){
             return;
         }
+        CarType carType = getCarTypeByID(new CarTypeID(car.getGarage(),car.getBrand(),car.getSfx(),car.getColor()));
+        car.setValid("Y");
+        car.setCost(carType.getCost());
+        car.setDiscount(carType.getDiscount());
+        car.setPrice(carType.getPrice());
+        int stock = carType.getStock();
+        int request_number = carType.getRequestNumber();
+        carType.setStock(stock + 1);
+        if(request_number > 0){
+            request_number--;
+        }
+        carType.setRequestNumber(request_number);
+        carTypeDAO.updateCarType(carType);
         if(carDAO.findCarById(car.getCarID()) != null){
-            car.setValid("Y");
             carDAO.updateCar(car);
             return;
         }
-        car.setValid("Y");
         carDAO.createCar(car);
     }
 

@@ -28,12 +28,42 @@
 
   <div class="form-group">
     <div class="col-sm-2"></div>
-    <div class="col-sm-7">
-      <button type="submit" class="btn btn-primary">提交</button>
+    <div class="col-sm-7" id="msg">
+      <input class="btn btn-primary" onclick="existsChecking()" value="提交" readonly="readonly"/>
     </div>
   </div>
 </form:form>
-  To be implemented 检查重复
+<script>
+  function existsChecking() {
+    var obj = document.getElementById("Brand");
+    var brand = obj.value;
+    $.ajax({
+      url: "${pageContext.request.contextPath}/Car/garageExists",
+      data:{"brand":brand},
+      type: 'POST',
+      dataType:'JSON',
+      success:function (data) {
+        if(data.message == "false"){
+          // alert("haha");
+          var form = document.getElementById("formAddGarage");
+          form.submit();
+        }else{
+          var html = document.getElementById("msg");
+          html.innerHTML = "<input class='btn btn-primary' value='提交' onclick='existsChecking()' readonly='readonly'>" + "此类型已经存在!";
+
+        }
+      },
+      error:function () {
+        var html = document.getElementById("msg");
+        html.innerHTML = "<input class='btn btn-primary' value='提交' onclick='existsChecking()' readonly='readonly'>" + "此类型已经存在!";
+      }
+    })
+
+
+
+  }
+
+</script>
 <jsp:include page="../Site/footer.jsp"/>
 
 </body>

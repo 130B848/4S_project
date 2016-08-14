@@ -300,6 +300,116 @@ public class CarController {
         return map;
     }
 
+    @RequestMapping(value = "/carTypeExists")
+    public @ResponseBody
+    Map<String, Object> carTypeExists(HttpServletRequest request) throws IOException{
+        Map<String,Object> map = new HashMap<String,Object>();
+
+        String garage = request.getParameter("garage");
+        String brand = request.getParameter("brand");
+        String sfx = request.getParameter("sfx");
+        String color = request.getParameter("color");
+
+        // System.out.println(garage + brand + "11111");
+        CarTypeID carTypeID = new CarTypeID(garage,brand,sfx,color);
+        // System.out.println(garage + brand + "22222");
+        if(!carService.carTypeExist(carTypeID)){
+            System.out.println("hahaha");
+            map.put("message","false");
+        }else {
+            System.out.println("yaoyaoqiekenao");
+            map.put("message","true");
+        }
+        return map;
+    }
+
+    @RequestMapping(value = "/brandExists")
+    public @ResponseBody
+    Map<String, Object> brandExists(HttpServletRequest request) throws IOException{
+        Map<String,Object> map = new HashMap<String,Object>();
+
+        String brand = request.getParameter("brand");
+        String garage = request.getParameter("garage");
+        // System.out.println(garage + brand + "11111");
+
+        if(!carService.brandExist(garage,brand)){
+
+            map.put("message","false");
+        }else {
+
+            map.put("message","true");
+        }
+        return map;
+    }
+
+    @RequestMapping(value = "/colorExists")
+    public @ResponseBody
+    Map<String, Object> colorExists(HttpServletRequest request) throws IOException{
+        Map<String,Object> map = new HashMap<String,Object>();
+
+        String color = request.getParameter("color");
+
+        if(!carService.colorExist(color)){
+
+            map.put("message","false");
+        }else {
+
+            map.put("message","true");
+        }
+        return map;
+    }
+
+
+    @RequestMapping(value = "/garageExists")
+    public @ResponseBody
+    Map<String, Object> garageExists(HttpServletRequest request) throws IOException{
+        Map<String,Object> map = new HashMap<String,Object>();
+
+        String garage = request.getParameter("brand");
+
+        if(!carService.garageExist(garage)){
+
+            map.put("message","false");
+        }else {
+
+            map.put("message","true");
+        }
+        return map;
+    }
+
+    @RequestMapping(value = "/sfxExists")
+    public @ResponseBody
+    Map<String, Object> sfxExists(HttpServletRequest request) throws IOException{
+        Map<String,Object> map = new HashMap<String,Object>();
+
+        String sfx = request.getParameter("sfx");
+
+        if(!carService.sfxExist(sfx)){
+
+            map.put("message","false");
+        }else {
+
+            map.put("message","true");
+        }
+        return map;
+    }
+
+    @RequestMapping(value = "/stockStatusExists")
+    public @ResponseBody
+    Map<String, Object> stockStatusExists(HttpServletRequest request) throws IOException{
+        Map<String,Object> map = new HashMap<String,Object>();
+
+        String status = request.getParameter("status");
+
+        if(!carService.stockStatusExist(status)){
+
+            map.put("message","false");
+        }else {
+
+            map.put("message","true");
+        }
+        return map;
+    }
 
 
 

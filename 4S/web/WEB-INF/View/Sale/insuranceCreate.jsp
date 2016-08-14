@@ -73,6 +73,13 @@
     </div>
 
     <div class="form-group">
+        <label class="col-sm-2 control-label">折让 :</label>
+        <div class="col-sm-7">
+            <form:input cssClass="form-control" ID="Discount" path="Discount"/>
+        </div>
+    </div>
+
+    <div class="form-group">
         <label class="col-sm-2 control-label">保险成本 :</label>
         <div class="col-sm-7">
             <form:input cssClass="form-control" ID="Cost" path="Cost"/>

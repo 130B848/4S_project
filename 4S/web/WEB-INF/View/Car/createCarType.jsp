@@ -72,14 +72,57 @@
 
     <div class="form-group">
         <div class="col-sm-2"></div>
-        <div class="col-sm-7">
-            <button type="submit" class="btn btn-primary">登记</button>
+        <div class="col-sm-7" id="msg">
+            <input class="btn btn-primary" onclick="existsChecking()" value="提交" readonly="readonly"/>
         </div>
     </div>
 </form:form>
 <jsp:include page="../Site/footer.jsp"/>
 
 <script>
+
+    function existsChecking() {
+        var obj = document.getElementById("Garage");
+        var index = obj.selectedIndex; // 选中索引
+        var garage = obj.options[index].value; // 选中值
+
+        obj = document.getElementById("Brand");
+        index = obj.selectedIndex; // 选中索引
+        var brand = obj.options[index].value;
+
+
+        obj = document.getElementById("carSfx");
+        index = obj.selectedIndex;
+        var sfx = obj.options[index].value;
+
+
+        obj = document.getElementById("carColor");
+        index = obj.selectedIndex;
+        var color = obj.options[index].value;
+
+        $.ajax({
+            url: "${pageContext.request.contextPath}/Car/carTypeExists",
+            data:{"garage":garage, "brand":brand,"sfx":sfx,"color":color},
+            type: 'POST',
+            dataType:'JSON',
+            success:function (data) {
+                if(data.message == "false"){
+                    // alert("haha");
+                    var form = document.getElementById("formCreateCarType");
+                    form.submit();
+                }else{
+                    var html = document.getElementById("msg");
+                    html.innerHTML = "<input class='btn btn-primary' value='提交' onclick='existsChecking()' readonly='readonly'>" + "此车型已经存在!";
+
+                }
+            },
+            error:function () {
+                var html = document.getElementById("msg");
+                html.innerHTML = "<input class='btn btn-primary' value='提交' onclick='existsChecking()' readonly='readonly'>" + "此车型已经存在!";
+            }
+        })
+    };
+
     $(document).ready(function() {
         brandSelect();
     });

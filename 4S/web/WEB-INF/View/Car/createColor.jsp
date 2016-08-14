@@ -29,12 +29,40 @@
 
   <div class="form-group">
     <div class="col-sm-2"></div>
-    <div class="col-sm-7">
-      <button type="submit" class="btn btn-primary">提交</button>
+    <div class="col-sm-7" id="msg">
+      <input class="btn btn-primary" value="提交" onclick="existsChecking()" readonly="readonly">
     </div>
   </div>
 </form:form>
-To be implemented 检查重复
+<script>
+  function existsChecking() {
+    //alert(1111);
+    var obj = document.getElementById("Color");
+    //alert(obj);
+    var color = obj.value;
+//alert(brand);
+
+    $.ajax({
+      url: "${pageContext.request.contextPath}/Car/colorExists",
+      data:{"color":color},
+      type: 'POST',
+      dataType:'JSON',
+      success:function (data) {
+        if(data.message == "false"){
+          var form = document.getElementById("formAddColor");
+          form.submit();
+        }else{
+          var html = document.getElementById("msg");
+          html.innerHTML = "<input class='btn btn-primary' value='提交' onclick='existsChecking()' readonly='readonly'> + "此颜色已经存在!";
+        }
+      },
+      error:function () {
+        var html = document.getElementById("msg");
+        html.innerHTML = "<input class='btn btn-primary' value='提交' onclick='existsChecking()' readonly='readonly'>" + "此颜色已经存在!";
+      }
+    })
+  }
+</script>
 <jsp:include page="../Site/footer.jsp"/>
 
 </body>

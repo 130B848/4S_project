@@ -31,7 +31,7 @@
                 <tr>
                     <td>${gift.giftID}</td>
                     <td>${gift.name}</td>
-                    <td>${gift.type}</td>
+                    <td>${gift.giftType}</td>
                     <td><button type="button" class="btn btn-primary" onclick="window.location='${pageContext.request.contextPath}/Sale/deleteGift/${gift.giftID}'">删除</button></td>
                     <td><button type="button" class="btn btn-primary" onclick="window.location='#'">修改</button></td>
                 </tr>
